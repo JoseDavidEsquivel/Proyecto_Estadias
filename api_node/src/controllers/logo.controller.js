@@ -84,7 +84,7 @@ export const subirLogo = async (req, res) => {
 
 
 export const borrarLogo = async (req, res) => {
-    const defaultFilename = "default_logo.png";
+    const defaultFilename = "no_image_default_logo.png";
     const defaultPath = "static/images/logos/";
 
     try {
