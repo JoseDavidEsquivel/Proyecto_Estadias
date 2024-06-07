@@ -22,7 +22,7 @@ CREATE TABLE logo (
 );
 
 INSERT INTO logo (imagen,ruta) VALUES
-('default_logo.png','static/images/logo/');
+('no_image_default_logo.png','static/images/logo/');
 
 
 
@@ -58,9 +58,9 @@ CREATE TABLE carrusel (
 );
 
 INSERT INTO carrusel (imagen, ruta, estado, url) VALUES
-('imagen.png','static/images/carrusel','1','ejemplo.com'),
-('imagen.png','static/images/carrusel','0','ejemploinactivo.com'),
-('imagen2.png','static/images/carrusel','1','ejemploactivo.com');
+('no_image_default_aviso.png','static/images/carrusel','1','ejemplo.com'),
+('no_image_default_aviso.png','static/images/carrusel','0','ejemploinactivo.com'),
+('no_image_default_aviso.png','static/images/carrusel','1','ejemploactivo.com');
 
 -- UBICACIONES (DONE JS) ------
 CREATE TABLE ubicaciones (
@@ -99,8 +99,8 @@ CREATE TABLE noticias (
 );
 
 INSERT INTO noticias (titulo, contenido, imagen, ruta) VALUES
-('Reportan disparos vs alcadia de tlanchinol','Segun los informes preliminares, un grupo armado, a bordo de camionetas, disparo contra el inmueble, causando daños en las instalaciones','imagen.png','/static/images/noticias'),
-('HOSPITAL en doxey, listo antes de que amlo se vaya','Julio Menchaca Salazar, gobernador de Hiladgo, aseguro que el presidente de la Republica le ha encargado que el hosputal de especialidades del instituto Mexicano del Seguro Social.','imagen.png','/static/images/noticias');
+('Reportan disparos vs alcadia de tlanchinol','Segun los informes preliminares, un grupo armado, a bordo de camionetas, disparo contra el inmueble, causando daños en las instalaciones','no_image_default_noticia.png','/static/images/noticias'),
+('HOSPITAL en doxey, listo antes de que amlo se vaya','Julio Menchaca Salazar, gobernador de Hiladgo, aseguro que el presidente de la Republica le ha encargado que el hosputal de especialidades del instituto Mexicano del Seguro Social.','no_image_default_noticia.png','/static/images/noticias');
 
 -- EVENTOS -- (CALENDARIO) (DONE JS) -------------------------------------------------------
 CREATE TABLE eventos (
@@ -268,13 +268,6 @@ CREATE TABLE documentos(
     FOREIGN KEY (id_fraccion) REFERENCES fracciones(id_fraccion) ON DELETE CASCADE
 );
 
-INSERT INTO documentos (documento, ruta, trimestre, año, id_fraccion) VALUES
-('a69_f01.xlsx','1',2024,1),
-('a69_f02.xlsx','1',2024,2),
-('a69_f45.xlsx','1',2024,3),
-('a69_f46.xlsx','1',2024,4),
-('a70_f01_a1.xlsx','1',2024,5),
-('a70_f01_b1.xlsx','1',2024,6);
 
 CREATE TABLE tramites_servicios (
     id_tramite INT AUTO_INCREMENT PRIMARY KEY,

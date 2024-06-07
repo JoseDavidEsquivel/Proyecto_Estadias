@@ -491,7 +491,7 @@ async def borrar_logo():
         raise HTTPException(status_code=404, detail="Logo no encontrado")
 
     current_filename = result[0]
-    default_filename = "default_icon.png"
+    default_filename = "no_image_default_logo.png"
     default_path = "static/images/logos/"
 
     # Actualizar la base de datos con el nombre del archivo por defecto
