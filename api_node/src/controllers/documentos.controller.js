@@ -26,6 +26,31 @@ export const getDocumentos = async (req, res) => {
     }
 }
 
+export const getDocumentosFraccion = async (req, res) => {
+    // Obtener el id_fraccion de los parámetros de la solicitud
+    const { id_fraccion } = req.params;
+
+    // Conectar a la base de datos
+    const connection = await pool.getConnection();
+
+    try {
+        // Consultar documentos por id_fraccion
+        const [documentos] = await connection.query("SELECT * FROM documentos WHERE id_fraccion = ?", [id_fraccion]);
+
+        if (!documentos.length) {
+            return res.status(404).json({ detail: "No hay documentos para el id_fraccion proporcionado" });
+        }
+
+        res.status(200).json(documentos);
+    } catch (error) {
+        console.error('Error al listar los documentos:', error.message);
+        res.status(500).json({ detail: "Error interno al listar los documentos" });
+    } finally {
+        connection.release();
+    }
+}
+
+
 export const getDocumento = async (req, res) => {
     const { id_documento } = req.params;
 

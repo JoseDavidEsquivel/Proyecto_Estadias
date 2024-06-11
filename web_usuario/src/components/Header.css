@@ -1,0 +1,85 @@
+/* Header.css */
+@import 'variables.scss';
+
+.navbar-custom {
+  background-color: var(--color_header_background); /* Blanco para el fondo */
+  color:  var(--color_header_font);           /* Gris para el texto */
+  box-shadow: 0 10px 12px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link,
+.navbar-custom .nav-dropdown {
+  color: #666666; /* Asegura que el texto de los enlaces también sea gris */
+}
+
+.navbar-brand img {
+  height: 75px;
+  display: flex;
+  align-items: center;  /* Ajusta la altura según tus necesidades */
+  width: auto;  /* Mantiene la proporción de la imagen */
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .dropdown-item {
+  font-size: 1.1rem;  /* Ajusta el tamaño según tus necesidades */
+  margin-right: 15px;  /* Espacio entre los enlaces */
+  font-weight: bold;
+}
+
+.navbar-custom .nav-link + .nav-link,
+.navbar-custom .nav-link + .dropdown,
+.navbar-custom .dropdown + .nav-link,
+.navbar-custom .dropdown + .dropdown {
+  margin-left: 60px; /* Espacio entre los enlaces y el dropdown */
+}
+
+.ms-auto {
+  padding-right: 60px;
+}
+
+.logo_header {
+  padding-left: 60px;
+}
+
+.dropdown-item {
+  color: var(--color_header_font); /* Cambiar el color del texto para asegurar que sea visible */
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+  color: var(--color_header_font);
+}
+
+/* Cambiar el color de fondo del elemento del menú desplegable cuando se pasa el cursor por encima */
+.dropdown-item:hover {
+  background-color: var(--color_secondary); /* Color de fondo cuando se pasa el cursor */
+  color: #fff; /* Cambiar el color del texto para asegurar que sea visible */ 
+}
+
+.dropdown-item {
+  display: flex;
+  color: var(--color_header_font);
+  justify-content: right;
+}
+
+.navbar-custom .nav-dropdown .dropdown-menu {
+  transform: translateX(-50px); /* Mueve el menú desplegable 50px hacia la izquierda */
+}
+
+.dropdown-menu {
+  border: 0;
+  border-radius: 0;
+}
+
+.nav-dropdown-toggle-shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajusta la sombra según tus necesidades */
+}
+
+::after {
+  color: var(--color_secondary);
+}
+
+/* Estilos para el dropdown activo */
+.navbar-nav-scroll.active-dropdown > .nav-link {
+  border-top: 4px solid var(--color_secondary); /* Cambia var(--color_secondary) por el color que desees */
+}

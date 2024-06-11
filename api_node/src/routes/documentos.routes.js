@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { borrarDocumento, getDocumento, getDocumentos, postDocumento } from "../controllers/documentos.controller.js";
+import { borrarDocumento, getDocumento, getDocumentos, getDocumentosFraccion, postDocumento } from "../controllers/documentos.controller.js";
 
 import multer from 'multer';
 
@@ -8,6 +8,8 @@ const upload = multer({ dest: 'src/static/temp/' });
 
 
 router.get('/documento', getDocumentos)
+
+router.get('/documento/fraccion/:id_fraccion', getDocumentosFraccion )
 
 router.get('/documento/:id_documento', getDocumento)
 
