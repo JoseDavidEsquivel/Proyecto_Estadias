@@ -112,7 +112,12 @@ export const getAviso = async (req, res) => {
     }
 }
 
-export const postAviso =  async (req, res) => {
+// Función para sanitizar nombres de archivos
+const sanitizeFilename = (filename) => {
+    return filename.replace(/[^a-z0-9_\-\.]/gi, '_').toLowerCase();
+};
+
+export const postAviso = async (req, res) => {
     const { estado, url } = req.body;
     const { file } = req;
 
@@ -124,21 +129,30 @@ export const postAviso =  async (req, res) => {
     // Ruta temporal del archivo
     const tempFilePath = path.join('src/static/temp', file.filename);
 
-    // Comprobar el tamaño de la imagen
     try {
+        // Comprobar el tamaño de la imagen
         const image = sharp(tempFilePath);
         const metadata = await image.metadata();
 
         if (metadata.width < 200 || metadata.height < 200) {
             await fs.promises.unlink(tempFilePath);
             return res.status(400).json({ detail: "La imagen tiene que ser mayor a 200x200" });
-        } else if (metadata.width > 1500 || metadata.height > 1500) {
+        } else if (metadata.width > 5000 || metadata.height > 5000) {
             await fs.promises.unlink(tempFilePath);
-            return res.status(400).json({ detail: "La imagen tiene que ser menor a 1500x1500" });
+            return res.status(400).json({ detail: "La imagen tiene que ser menor a 5000x5000" });
         }
 
+        // Sanitizar el nombre del archivo
+        const sanitizedFilename = sanitizeFilename(file.originalname);
+
         // Ruta final del archivo
-        const finalFilePath = path.join('src/static/images/carrusel', file.originalname);
+        const finalFilePath = path.join('src/static/images/carrusel', sanitizedFilename);
+
+        // Asegúrate de que la carpeta de destino exista
+        const finalDir = path.dirname(finalFilePath);
+        await fs.promises.mkdir(finalDir, { recursive: true });
+
+        // Renombrar el archivo
         await fs.promises.rename(tempFilePath, finalFilePath);
 
         // Conectar a la base de datos
@@ -146,12 +160,12 @@ export const postAviso =  async (req, res) => {
 
         // Insertar datos en la base de datos
         const query = 'INSERT INTO carrusel (imagen, ruta, estado, url) VALUES (?, ?, ?, ?)';
-        const usuarioData = [file.originalname, 'static/images/carrusel/', estado, url];
+        const usuarioData = [sanitizedFilename, 'static/images/carrusel/', estado, url];
         await connection.execute(query, usuarioData);
         connection.release();
 
         res.json({
-            filename: file.originalname,
+            filename: sanitizedFilename,
             estado,
             url
         });

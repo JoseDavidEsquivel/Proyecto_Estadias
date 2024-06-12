@@ -1,11 +1,21 @@
 /* Header.css */
 @import 'variables.scss';
 
+/* .navbar-custom {
+  background-color: var(--color_header_background); 
+  color:  var(--color_header_font);   
+  box-shadow: 0 10px 12px rgba(0,0,0,0.1); 
+} */
+
 .navbar-custom {
-  background-color: var(--color_header_background); /* Blanco para el fondo */
-  color:  var(--color_header_font);           /* Gris para el texto */
-  box-shadow: 0 10px 12px rgba(0,0,0,0.1); /* Sombra suave */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que el header esté sobre otros elementos */
+  background-color: var(--color_header_background);
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
 }
+
 
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link,
@@ -31,7 +41,7 @@
 .navbar-custom .nav-link + .dropdown,
 .navbar-custom .dropdown + .nav-link,
 .navbar-custom .dropdown + .dropdown {
-  margin-left: 60px; /* Espacio entre los enlaces y el dropdown */
+  margin-left: 40px; /* Espacio entre los enlaces y el dropdown */
 }
 
 .ms-auto {

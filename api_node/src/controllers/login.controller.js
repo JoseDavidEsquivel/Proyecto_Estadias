@@ -33,11 +33,11 @@ const verificarCredenciales = async (nombre, contrasena) => {
                 } else {
                     let rol;
                     if (usuario.permisos === '0') {
-                        rol = 'director';
+                        rol = 'director area';
                     } else if (usuario.permisos === '1') {
                         rol = 'administrador';
                     } else {
-                        rol = 'director de documentos';
+                        rol = 'director transparencia';
                     }
                     const area = usuario.area;
 
@@ -71,6 +71,7 @@ const verificarCredenciales = async (nombre, contrasena) => {
 // Login
 export const login = async (req, res) => {
     const credenciales = req.body;
+    console.log
     const resultadoVerificacion = await verificarCredenciales(credenciales.nombre, credenciales.contrasena);
 
     if (resultadoVerificacion.mensaje === "Credenciales correctas") {

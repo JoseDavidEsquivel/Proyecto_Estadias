@@ -86,6 +86,8 @@ export const getDocumento = async (req, res) => {
 export const postDocumento = async (req, res) => {
     const { id_fraccion, periodo, trimestre } = req.body;
     const file = req.file;
+
+    console.log(req.body)
     // Conectar a la base de datos
     const connection = await pool.getConnection();
 
@@ -106,8 +108,14 @@ export const postDocumento = async (req, res) => {
 
         // Crear la ruta del archivo con la estructura especificada
         const directory = path.join("static/documents/transparencia", articulo.toString(), fraccion, periodo.toString());
-        fs.mkdirSync(directory, { recursive: true });
-        const fileLocation = path.join(directory, file.originalname);
+
+        fs.mkdirSync(('src/' + directory), { recursive: true });
+        const fileLocation = path.join('src/' + directory, file.originalname);
+
+        // Asegurar que la ruta tenga barras normales
+        const directoryUnix = directory.replace(/\\/g, '/');
+        const fileLocationUnix = fileLocation.replace(/\\/g, '/');
+
 
         // Leer el contenido del archivo en el sistema de archivos
         fs.readFile(file.path, async (err, data) => {
@@ -117,21 +125,21 @@ export const postDocumento = async (req, res) => {
             }
 
             // Guardar el archivo localmente
-            fs.writeFileSync(fileLocation, data);
+            fs.writeFileSync(fileLocationUnix, data);
 
             // Insertar documento en la base de datos
             const query = "INSERT INTO documentos (documento, ruta, trimestre, año, id_fraccion) VALUES (?, ?, ?, ?, ?)";
-            const eventoData = [file.originalname, directory, trimestre, periodo, id_fraccion];
+            const eventoData = [file.originalname, directoryUnix, trimestre, periodo, id_fraccion];
             const [result] = await connection.query(query, eventoData);
 
             res.status(200).json({
                 id_documento: result.insertId,
                 documento: file.originalname,
-                ruta: directory,
+                ruta: directoryUnix,
                 trimestre: trimestre,
                 año: periodo,
                 id_fraccion: id_fraccion,
-                ruta: fileLocation
+                ruta: fileLocationUnix
             });
         });
     } catch (error) {
@@ -173,7 +181,7 @@ export const borrarDocumento = async (req, res) => {
         const { fraccion, num_articulo } = fraccionArticulo[0];
 
         // Construir la ruta completa del archivo
-        const fileLocation = path.join("static/documents/transparencia", num_articulo.toString(), fraccion, año.toString(), documento);
+        const fileLocation = path.join("src/static/documents/transparencia", num_articulo.toString(), fraccion, año.toString(), documento);
 
         // Eliminar el archivo localmente
         if (fs.existsSync(fileLocation)) {

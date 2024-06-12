@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import './Header.css';  // Asegúrate de que tus estilos personalizados estén siendo importados
+import './Header.css';  // Estilos para el header
+import { host } from '../conexion.js' // Importar el host actual
+
 
 function Header() {
   const [logoUrl, setLogoUrl] = useState('');
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/logo')
+    // fetch('http://localhost:8000/logo')
+    fetch( host + '/logo')
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
           const { archivo, ruta } = data[0];
-          setLogoUrl(`http://localhost:8000/${ruta}${archivo}`);
+          setLogoUrl( host + `/${ruta}${archivo}`);
         }
       })
       .catch(error => {

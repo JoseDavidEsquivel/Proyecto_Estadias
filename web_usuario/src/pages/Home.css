@@ -1,0 +1,47 @@
+/* Home.css */
+
+.carousel-container {
+  width: 90%; /* Ancho del 90% del contenedor padre */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+}
+
+.carousel-image {
+  max-height: 400px;
+  min-height: 400px;
+  object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsionar */
+  border-radius: 25px;
+}
+
+.carousel-control-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 0 15px;
+}
+
+.carousel-control-custom svg {
+  width: 60px;
+  height: 60px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  display: flex;
+  list-style: none;
+}
+
+
+.carousel-indicators .active {
+  background-color: #e83c4c; /* Color de fondo del indicador activo */
+}
+
+.separator {
+  border: none;
+  border-top: 5px solid rgba(0, 0, 0, 0.2); /* Aumentar el grosor de la línea a 2px */
+  margin-top: 40px;
+  margin-bottom: 40px;
+}

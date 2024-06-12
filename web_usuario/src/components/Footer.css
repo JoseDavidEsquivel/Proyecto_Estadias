@@ -1,60 +1,82 @@
-/* Footer.css */
-@import 'variables.scss';
-
 .footer {
-  background-color: var(--color_footer_background, #343a40); /* Fondo oscuro por defecto */
-  color: var(--color_footer_font, #ffffff); /* Texto blanco por defecto */
-  padding: 20px 0; /* Espaciado vertical */
-  text-align: center; /* Centrar el texto */
-}
+    background-color: var(--color_footer_background, #343a40); /* Fondo oscuro por defecto */
+    color: var(--color_footer_font, #ffffff); /* Texto blanco por defecto */
+    padding: 20px 0; /* Espaciado vertical */
+    text-align: center; /* Centrar el texto */
+    font-size: 0.6rem;
+    align-items: end;
+  }
+  
+  .footer-section {
+    border-left: 1px solid var(--color_footer_border, #ffffff); /* Línea vertical separadora */
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos hijos se apilen verticalmente */
+    align-items: center; /* Centrar elementos verticalmente */
+    justify-content: center; /* Centrar elementos horizontalmente */
+  }
+  
+  .footer-section:first-child {
+    border-left: none; /* Quitar borde del primer elemento */
+  }
+  
+  .footer-image {
+    max-height: 120px; /* Asegurar que la imagen no se desborde */
+    margin-bottom: 10px; /* Espacio debajo de la imagen */
+  }
+  
+  .footer-paragraph {
+    display: flex;
+    flex-direction: row;
+    justify-content: left; /* Centrar horizontalmente */
+    margin-bottom: 10px; /* Espacio entre los párrafos */
+  }
+  
+  .paragraph {
+    padding-left: 35px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footer-icon {
+    width: 20px;
+    height: 20px;
+    padding-right: 10px; /* Espacio entre el ícono y el texto */
+  }
+  
+  .footer-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar elementos horizontalmente */
+  }
+  
+  .footer-list li {
+    margin-bottom: 10px; /* Espacio entre los elementos de la lista */
+  }
+  
+  .footer-list a {
+    color: var(--color_footer_font, #ffffff); /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+  }
+  
+  .footer-list a:hover {
+    text-decoration: underline; /* Subrayado al pasar el cursor */
+  }
+  
+  .footer-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Espaciar los íconos horizontalmente */
+    margin-top: 10px; /* Espacio encima de los íconos */
+    width: 45%;
+  }
+  
+  .svg-icon {
+    min-height: 15px;
+    max-height: 15px;
+    width: auto;
+  }
 
-.footer-section {
-  border-left: 1px solid var(--color_footer_border, #ffffff); /* Línea vertical separadora */
-  padding: 0 20px;
-}
-
-.footer-section:first-child {
-  border-left: none; /* Quitar borde del primer elemento */
-}
-
-.footer-image {
-  max-width: 100%; /* Asegurar que la imagen no se desborde */
-  margin-bottom: 10px; /* Espacio debajo de la imagen */
-}
-
-.footer-paragraph {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* Espacio entre los párrafos */
-}
-
-.footer-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px; /* Espacio entre el ícono y el texto */
-}
-
-.footer-list {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-}
-
-.footer-list li {
-  margin-bottom: 10px; /* Espacio entre los elementos de la lista */
-}
-
-.footer-list a {
-  color: var(--color_footer_font, #ffffff); /* Color de los enlaces */
-  text-decoration: none; /* Sin subrayado */
-}
-
-.footer-list a:hover {
-  text-decoration: underline; /* Subrayado al pasar el cursor */
-}
-
-.footer-icons {
-  display: flex;
-  justify-content: space-around; /* Espaciar los íconos horizontalmente */
-  margin-top: 10px; /* Espacio encima de los íconos */
-}
+  

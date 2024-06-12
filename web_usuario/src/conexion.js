@@ -1,0 +1,11 @@
+// EN LA TEORIA ESTE ARCHIVO SOLO SERVIRA PARA MANDAR A LLAMAR UNA VARIABLE QUE SERA EL HOST DE LA API A QUE SE LE HARAN REQUESTS
+
+// HOST DE FORMA LOCAL
+export const host = 'http://localhost:8000'
+
+// HOST DEL SERVER DE PRUEBA
+// export const host = ''
+
+// HOST DEFINITIVO (CREO)
+// export const host = ''
+
