@@ -82,12 +82,14 @@ CREATE TABLE contactos (
     nombre_institucion TEXT,
     tipo_contacto ENUM('telefono','email'),
     contacto TEXT,
-    horario TEXT
+    horario TEXT,
+    imagen TEXT,
+    ruta TEXT
 );
 
-INSERT INTO contactos (nombre_institucion, tipo_contacto, contacto, horario) VALUES
-('Presidencia Municipal','telefono','01(775)7532914, 15, 16 Ext, 101 ','Horario de 8:30 AM a 4:30 PM'),
-('Agua Potable','telefono','01(775)7546459','Horario de 8:30 AM a 4:30 PM');
+INSERT INTO contactos (nombre_institucion, tipo_contacto, contacto, horario, imagen, ruta) VALUES
+('Presidencia Municipal','telefono','01(775)7532914, 15, 16 Ext, 101 ','Horario de 8:30 AM a 4:30 PM','contacto_default.png','static/images/contactos'),
+('Agua Potable','telefono','01(775)7546459','Horario de 8:30 AM a 4:30 PM','contacto_default.png','static/images/contactos');
 
 -- NOTICIAS (DONE JS) ---------------------------------------------------------
 CREATE TABLE noticias (
@@ -304,3 +306,14 @@ CREATE TABLE organigrama(
 -- probar si la logica de los docs funciona
 -- probar si la logica de las encuestas funciona
 -- hacer nueva pagina para banco de respuestas (OPCIONAL)
+
+
+
+CREATE TABLE buzon_ciudadano(
+    id_buzon AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    telefono VARCHAR(50),
+    correo VARCHAR(50),
+    comentarios VARCHAR(450),
+    dia DATE
+);

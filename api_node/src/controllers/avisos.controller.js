@@ -121,6 +121,8 @@ export const postAviso = async (req, res) => {
     const { estado, url } = req.body;
     const { file } = req;
 
+
+    console.log(file)
     // Validar valores de estado
     if (!['0', '1'].includes(estado)) {
         return res.status(400).json({ detail: "El valor de 'estado' debe ser '0' o '1'" });
@@ -187,6 +189,7 @@ export const putAviso = async (req, res) => {
 
     let usuarioData;
     let query;
+    let sanitizedFilename = ''; // Declarar sanitizedFilename fuera del bloque if (file)
 
     // Conectar a la base de datos
     const connection = await pool.getConnection();
@@ -208,13 +211,16 @@ export const putAviso = async (req, res) => {
                 return res.status(400).json({ detail: "La imagen tiene que ser menor a 1500x1500" });
             }
 
+            // Sanitizar el nombre del archivo
+            sanitizedFilename = sanitizeFilename(file.originalname);
+
             // Ruta final del archivo
-            const finalFilePath = path.join('src/static/images/carrusel', file.originalname);
+            const finalFilePath = path.join('src/static/images/carrusel', sanitizedFilename);
             await fs.promises.rename(tempFilePath, finalFilePath);
 
             // Actualizar los datos en la base de datos
             query = 'UPDATE carrusel SET imagen = ?, ruta = ?, estado = ?, url = ? WHERE id_imagen = ?';
-            usuarioData = [file.originalname, 'static/images/carrusel/', estado, url, id_aviso];
+            usuarioData = [sanitizedFilename, 'static/images/carrusel/', estado, url, id_aviso];
         } else {
             // Actualizar los datos en la base de datos sin cambiar la imagen
             query = 'UPDATE carrusel SET estado = ?, url = ? WHERE id_imagen = ?';
@@ -224,18 +230,20 @@ export const putAviso = async (req, res) => {
         await connection.execute(query, usuarioData);
         connection.release();
 
+        // Definir el nombre de archivo para la respuesta JSON
+        const filenameResponse = file ? sanitizedFilename : "No se cambió la imagen";
+
         res.json({
             id_aviso: id_aviso,
             estado,
             url,
-            filename: file ? file.originalname : "No se cambió la imagen"
+            filename: filenameResponse
         });
     } catch (error) {
         console.error('Error al editar el aviso:', error.message);
         res.status(500).send('Error interno al editar el aviso');
     }
 }
-
 export const deleteAviso = async (req, res) => {
     const { id_aviso } = req.params;
 

@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from pydantic import BaseModel
-from datetime import date, time
+from datetime import date, time, datetime
 from typing import Optional, List
 import mysql.connector
 import jwt
@@ -154,6 +154,13 @@ class Editar_requisito(BaseModel):
 class Color(BaseModel):
     nombre_color: str
     valor_hex: str
+
+class Buzon(BaseModel):
+    nombre: str
+    telefono: str
+    correo: str
+    comentarios: str
+
 
 app.mount("/static", StaticFiles(directory="static"),name="static")
 
@@ -952,7 +959,9 @@ def listar_contactos():
                     'nombre_institucion': row[1],
                     'tipo_contacto':row[2],
                     'contacto':row[3],
-                    'horario':row[4]
+                    'horario':row[4],
+                    'imagen':row[5],
+                    'ruta':row[6]
                 }
                 respuesta.append(dato)
             
@@ -980,7 +989,9 @@ def detalle_contacto(id_contacto:int):
                     'nombre_institucion': row[1],
                     'tipo_contacto':row[2],
                     'contacto':row[3],
-                    'horario':row[4]
+                    'horario':row[4],
+                    'imagen':row[5],
+                    'ruta':row[6]
                 }
                 respuesta.append(dato)
             
@@ -993,24 +1004,50 @@ def detalle_contacto(id_contacto:int):
         connection.close()
 
 @app.post("/contacto/crear",status_code=status.HTTP_200_OK, summary="Endpoint para crear un contacto", tags=['Contactos'])
-def crear_contacto(contacto:Contacto):
+async def crear_contacto(
+    nombre_institucion: str = Form(...),
+    tipo_contacto: str = Form(...),
+    contacto: str = Form(...),
+    horario: str = Form(...),
+    file: UploadFile = File(...)
+):
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
     try:
-        if contacto.tipo_contacto not in ['telefono','email']:
-            raise HTTPException(status_code=500, detail="El tipo de contacto solo puede ser 'telefono' o  'email'")
+        # Guardar temporalmente el archivo
+        file_location = f"static/temp/{file.filename}"
+        with open(file_location, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
 
+        # Abrir la imagen y comprobar el tamaño
+        try:
+            with Image.open(file_location) as img:
+                if img.size < (200, 200):
+                    raise HTTPException(status_code=400, detail="La imagen tiene que ser mayor a 200x200")
+                elif img.size > (5000, 5000):
+                    raise HTTPException(status_code=400, detail="La imagen tiene que ser menor a 5000x5000")
+        except Exception as e:
+            raise HTTPException(status_code=400, detail="Invalid image file")
+
+        # Mover el archivo al directorio final si pasa las validaciones
+        final_location = f"static/images/contactos/{file.filename}"
+        shutil.move(file_location, final_location)
+
+        if tipo_contacto not in ['telefono','email']:
+                raise HTTPException(status_code=500, detail="El tipo de contacto solo puede ser 'telefono' o  'email'")
 
         # Insertar nuevo usuario en la base de datos
-        query = "INSERT INTO contactos (nombre_institucion, tipo_contacto, contacto, horario) VALUES (%s, %s, %s, %s)"
-        usuario_data = (contacto.nombre_institucion, contacto.tipo_contacto, contacto.contacto, contacto.horario)
+        query = "INSERT INTO contactos (nombre_institucion, tipo_contacto, contacto, horario, imagen, ruta) VALUES (%s, %s, %s, %s, %s, %s)"
+        usuario_data = (nombre_institucion,tipo_contacto,contacto, horario, file.filename, 'static/images/contactos')
         cursor.execute(query, usuario_data)
         connection.commit()
         return {
-            'nombre_institucion': contacto.nombre_institucion,
-            'tipo_contacto':contacto.tipo_contacto,
-            'contacto': contacto.contacto,
-            'horario': contacto.horario
+            'nombre_institucion': nombre_institucion,
+            'tipo_contacto':tipo_contacto,
+            'contacto': contacto,
+            'horario': horario,
+            'imagen': file.filename,
+            'ruta': 'static/images/contactos'
         }
     except mysql.connector.Error as err:
         # Manejar errores de la base de datos
@@ -1021,26 +1058,62 @@ def crear_contacto(contacto:Contacto):
         connection.close()
 
 @app.put("/contacto/editar/{id_contacto}",status_code=status.HTTP_200_OK, summary="Endpoint para editar un contacto", tags=['Contactos'])
-def editar_contacto(contacto:Contacto, id_contacto:int):
+async def editar_contacto(
+    id_contacto:int,
+    nombre_institucion: str = Form(...),
+    tipo_contacto: str = Form(...),
+    contacto: str = Form(...),
+    horario: str = Form(...),
+    file: UploadFile = File(None)
+    ):
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
     try:
-        # Insertar nuevo usuario en la base de datos
-        query = 'UPDATE contactos SET nombre_institucion= %s, tipo_contacto= %s, contacto= %s, horario= %s WHERE id_contactos=%s'
-        usuario_data = (contacto.nombre_institucion, contacto.tipo_contacto, contacto.contacto, contacto.horario, id_contacto)
+        if tipo_contacto not in ['telefono','email']:
+                raise HTTPException(status_code=500, detail="El tipo de contacto solo puede ser 'telefono' o  'email'")
+        if file:
+                # Guardar temporalmente el archivo
+                file_location = f"static/temp/{file.filename}"
+                with open(file_location, "wb") as buffer:
+                    shutil.copyfileobj(file.file, buffer)
+
+                # Abrir la imagen y comprobar el tamaño
+                try:
+                    with Image.open(file_location) as img:
+                        if img.size < (200, 200):
+                            raise HTTPException(status_code=400, detail="La imagen tiene que ser mayor a 200x200")
+                        elif img.size > (5000, 5000):
+                            raise HTTPException(status_code=400, detail="La imagen tiene que ser menor a 1500x1500")
+                except Exception as e:
+                    raise HTTPException(status_code=400, detail="Invalid image file")
+
+                # Mover el archivo al directorio final si pasa las validaciones
+                final_location = f"static/images/noticias/{file.filename}"
+                shutil.move(file_location, final_location)
+    
+                # Actualizar los datos en la base de datos
+                query = 'UPDATE contactos SET nombre_institucion = %s, tipo_contacto = %s, contacto = %s, horario = %s, imagen = %s WHERE id_contacto=%s'
+                usuario_data = (nombre_institucion,tipo_contacto,contacto, horario, file.filename,id_contacto)
+        else:
+            # Actualizar los datos en la base de datos sin cambiar la imagen
+            query = 'UPDATE contactos SET nombre_institucion = %s, tipo_contacto = %s, contacto = %s, horario = %s WHERE id_contacto=%s'
+            usuario_data = (nombre_institucion,tipo_contacto,contacto, horario, id_contacto)
+
         cursor.execute(query, usuario_data)
         connection.commit()
-        return {
-            'id_contacto': id_contacto,
-            'nombre_institucion': contacto.nombre_institucion,
-            'tipo_contacto':contacto.tipo_contacto,
-            'contacto': contacto.contacto,
-            'horario': contacto.horario
-        }
+
+        return JSONResponse(content={
+            'nombre_institucion': nombre_institucion,
+            'tipo_contacto':tipo_contacto,
+            'contacto': contacto,
+            'horario': horario,
+            "imagen": file.filename if file else "No se cambió la imagen",
+            'ruta': 'static/images/contactos'     
+        })
     except mysql.connector.Error as err:
         # Manejar errores de la base de datos
-        print(f"Error al actualizar contacto en la base de datos: {err}")
-        raise HTTPException(status_code=500, detail="Error interno al actualizar contacto")
+        print(f"Error al insertar contacto en la base de datos: {err}")
+        raise HTTPException(status_code=500, detail="Error interno al crear contacto")
     finally:
         cursor.close()
         connection.close()
@@ -1050,17 +1123,24 @@ def borrar_contacto(id_contacto: int):
     # Conectar a la base de datos
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
-
-    # Verificar si el aviso existe y obtener la información del archivo
-    cursor.execute("SELECT * FROM contactos WHERE id_contactos=%s", (id_contacto,))
-    aviso = cursor.fetchone()
     
-    if not aviso:
+    cursor.execute("SELECT imagen FROM contactos WHERE id_contacto=%s", (id_contacto,))
+    contacto = cursor.fetchone()
+    
+    if not contacto:
         raise HTTPException(status_code=404, detail="Contacto no encontrado")
 
     # Eliminar el aviso de la base de datos
     cursor.execute("DELETE FROM contactos WHERE id_contactos =%s", (id_contacto,))
     connection.commit()
+
+        # Obtener el nombre del archivo
+    file_name = contacto[0]
+    file_path = f"static/images/contactos/{file_name}"
+
+    # Eliminar el archivo de imagen si existe
+    if os.path.exists(file_path):
+        os.remove(file_path)
 
     return JSONResponse(content={"message": "Contacto borrado correctamente", "id_contacto": id_contacto})
 
@@ -1183,7 +1263,7 @@ async def editar_noticia(
             with Image.open(file_location) as img:
                 if img.size < (200, 200):
                     raise HTTPException(status_code=400, detail="La imagen tiene que ser mayor a 200x200")
-                elif img.size > (1500, 1500):
+                elif img.size > (5000, 5000):
                     raise HTTPException(status_code=400, detail="La imagen tiene que ser menor a 1500x1500")
         except Exception as e:
             raise HTTPException(status_code=400, detail="Invalid image file")
@@ -2996,3 +3076,136 @@ def borrar_color(id_color: int):
     connection.commit()
 
     return JSONResponse(content={"message": "Color borrado correctamente", "id_color": id_color})
+
+@app.get("/buzon",status_code=status.HTTP_200_OK, summary="Endpoint para listar todos los colores existentes", tags=['Buzon'])
+def listar_buzon():
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+    try:
+        cursor.execute("SELECT * FROM buzon_ciudadano")
+        datos = cursor.fetchall()
+        if datos:
+            respuesta = []
+            for row in datos:
+                dato = {
+                    'id_buzon':row[0],
+                    'nombre':row[1],
+                    'telefono': row[2],
+                    'correo': row[3],
+                    'comentarios':row[4],
+                    'dia': row[5]
+                }
+                respuesta.append(dato)
+            
+            return respuesta
+        else:
+            raise HTTPException(status_code=404, detail="No hay quejas ni sugerencias en la Base de datos")
+    finally:
+        cursor.close()
+        connection.close()
+
+@app.get("/buzon/ordenado", status_code=status.HTTP_200_OK, summary="Endpoint para listar todos los colores existentes", tags=['Buzon'])
+def listar_buzon_ordenado():
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+    try:
+        cursor.execute("SELECT * FROM buzon_ciudadano ORDER BY dia DESC")
+        datos = cursor.fetchall()
+        if datos:
+            respuesta = []
+            for row in datos:
+                dato = {
+                    'id_buzon': row[0],
+                    'nombre': row[1],
+                    'telefono': row[2],
+                    'correo': row[3],
+                    'comentarios': row[4],
+                    'dia': row[5]
+                }
+                respuesta.append(dato)
+            
+            return respuesta
+        else:
+            raise HTTPException(status_code=404, detail="No hay quejas ni sugerencias en la Base de datos")
+    finally:
+        cursor.close()
+        connection.close()
+
+@app.get("/buzon/{id_buzon}",status_code=status.HTTP_200_OK, summary="Endpoint para buscar quejas en la bd", tags=['Buzon'])
+def detalle_buzon(id_buzon:int):
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+    try:
+        query = "SELECT * FROM buzon_ciudadano WHERE id_buzon = %s"
+        cursor.execute(query, (id_buzon,))
+        datos = cursor.fetchall()
+        if datos:
+            respuesta = []
+            for row in datos:
+                dato = {
+                    'id_buzon':row[0],
+                    'nombre':row[1],
+                    'telefono': row[2],
+                    'correo': row[3],
+                    'comentarios':row[4],
+                    'dia': row[5]
+                }
+                respuesta.append(dato)
+
+            return respuesta
+        else:
+            raise HTTPException(status_code=404, detail="No existe un color con ese id en la Base de datos")
+    finally:
+        cursor.close()
+        connection.close()
+
+@app.post("/buzon/crear", status_code=status.HTTP_200_OK, summary="Endpoint para poner una queja o sugerencia", tags=['Buzon'])
+def crear_buzon(buzon: Buzon):
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+    try:
+        # Obtener la fecha de hoy
+        fecha_hoy = datetime.datetime.today()
+
+        # Formatear la fecha en el formato YYYY-MM-DD
+        fecha_hoy_str = fecha_hoy.strftime('%Y-%m-%d')
+
+        # Insertar una respuesta cerrada en la base de datos
+        query = "INSERT INTO buzon_ciudadano (nombre, telefono, correo, comentarios, dia) VALUES (%s, %s, %s, %s, %s)"
+        evento_data = (buzon.nombre, buzon.telefono, buzon.correo, buzon.comentarios, fecha_hoy_str)
+        cursor.execute(query, evento_data)
+        connection.commit()
+        return {
+            'nombre': buzon.nombre,
+            'telefono': buzon.telefono,
+            'correo': buzon.correo,
+            'comentarios': buzon.comentarios,
+            'dia': fecha_hoy_str
+        }
+    except mysql.connector.Error as err:
+        # Manejar errores de la base de datos
+        print(f"Error al insertar la sugerencia/queja en la base de datos: {err}")
+        raise HTTPException(status_code=500, detail="Error interno al crear sugerencia/queja")
+    finally:
+        cursor.close()
+        connection.close()
+
+
+@app.delete("/buzon/borrar/{id_buzon}", status_code=status.HTTP_200_OK, summary="Endpoint para borrar una queja/sugerencia", tags=['Buzon'])
+def borrar_buzon(id_buzon: int):
+    # Conectar a la base de datos
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+
+    # Verificar si la repuesta existe
+    cursor.execute("SELECT * FROM buzon_ciudadano WHERE id_buzon =%s", (id_buzon,))
+    aviso = cursor.fetchone()
+    
+    if not aviso:
+        raise HTTPException(status_code=404, detail="Color no encontrado")
+
+    # Eliminar el aviso de la base de datos
+    cursor.execute("DELETE FROM buzon_ciudadano WHERE id_buzon =%s", (id_buzon,))
+    connection.commit()
+
+    return JSONResponse(content={"message": "Queja/Sugerencia borrada correctamente", "id_buzon": id_buzon})

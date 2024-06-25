@@ -7,7 +7,7 @@ router.get('/fraccion', getFracciones)
 
 router.get('/fraccion/:id_fraccion', getFraccion)
 
-router.get('/fracciones/buscar', buscarFracciones)
+router.get('/fracciones/busqueda', buscarFracciones)
 
 router.post('/fraccion/crear', postFraccion)
 

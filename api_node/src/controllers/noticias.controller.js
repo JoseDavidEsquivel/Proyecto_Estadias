@@ -49,46 +49,56 @@ export const getNoticia = async (req, res) => {
     }
 }
 
+// Función para sanitizar nombres de archivos
+const sanitizeFilename = (filename) => {
+    return filename.replace(/[^a-z0-9_\-\.]/gi, '_').toLowerCase();
+};
+
+
 export const postNoticia = async (req, res) => {
     const { titulo, contenido } = req.body;
     const { file } = req;
 
-
     const tempFilePath = path.join('src/static/temp', file.filename);
-    // Validar tamaño de la imagen
+
     try {
+        // Validar tamaño de la imagen
         const image = sharp(tempFilePath);
         const metadata = await image.metadata();
 
         if (metadata.width < 200 || metadata.height < 200) {
+            await fs.promises.unlink(tempFilePath);
             return res.status(400).json({ detail: "La imagen tiene que ser mayor a 200x200" });
-        } else if (metadata.width > 1500 || metadata.height > 1500) {
-            return res.status(400).json({ detail: "La imagen tiene que ser menor a 1500x1500" });
+        } else if (metadata.width > 5000 || metadata.height > 5000) {
+            await fs.promises.unlink(tempFilePath);
+            return res.status(400).json({ detail: "La imagen tiene que ser menor a 5000x5000" });
         }
 
-        const finalFilePath = path.join('src/static/images/noticias', file.filename);
+        // Ruta y nombre de archivo sanitizado
+        const sanitizedFilename = sanitizeFilename(file.originalname);
+        const finalFilePath = path.join('src/static/images/noticias', sanitizedFilename);
+
+        // Mover el archivo de la carpeta temp a la carpeta final
         await fs.promises.rename(tempFilePath, finalFilePath);
 
-        // Conectar a la base de datos
-        const connection = await pool.getConnection();
-
         // Insertar datos en la base de datos
+        const connection = await pool.getConnection();
         const query = 'INSERT INTO noticias (titulo, contenido, imagen, ruta) VALUES (?, ?, ?, ?)';
-        const usuarioData = [titulo, contenido, file.originalname, 'static/images/noticias/'];
-        await connection.execute(query, usuarioData);
+        const data = [titulo, contenido, sanitizedFilename, 'static/images/noticias/'];
+        await connection.execute(query, data);
         connection.release();
 
         res.json({
             titulo,
             contenido,
-            imagen: file.originalname,
+            imagen: sanitizedFilename,
             ruta: 'static/images/noticias/'
         });
     } catch (error) {
         console.error('Error al crear la noticia:', error.message);
         res.status(500).send('Error interno al crear la noticia');
     }
-}
+};
 
 export const putNoticia = async (req, res) => {
     const { id_noticia }= req.params;

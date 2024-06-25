@@ -84,7 +84,7 @@ export const getDocumento = async (req, res) => {
 }
 
 export const postDocumento = async (req, res) => {
-    const { id_fraccion, periodo, trimestre } = req.body;
+    const { id_fraccion, anual, trimestre } = req.body;
     const file = req.file;
 
     console.log(req.body)
@@ -107,7 +107,7 @@ export const postDocumento = async (req, res) => {
         const { fraccion, num_articulo: articulo } = fraccionArticulo[0];
 
         // Crear la ruta del archivo con la estructura especificada
-        const directory = path.join("static/documents/transparencia", articulo.toString(), fraccion, periodo.toString());
+        const directory = path.join("static/documents/transparencia", articulo.toString(), fraccion, anual.toString());
 
         fs.mkdirSync(('src/' + directory), { recursive: true });
         const fileLocation = path.join('src/' + directory, file.originalname);
@@ -129,7 +129,7 @@ export const postDocumento = async (req, res) => {
 
             // Insertar documento en la base de datos
             const query = "INSERT INTO documentos (documento, ruta, trimestre, año, id_fraccion) VALUES (?, ?, ?, ?, ?)";
-            const eventoData = [file.originalname, directoryUnix, trimestre, periodo, id_fraccion];
+            const eventoData = [file.originalname, directoryUnix, trimestre, anual, id_fraccion];
             const [result] = await connection.query(query, eventoData);
 
             res.status(200).json({
@@ -137,7 +137,7 @@ export const postDocumento = async (req, res) => {
                 documento: file.originalname,
                 ruta: directoryUnix,
                 trimestre: trimestre,
-                año: periodo,
+                año: anual,
                 id_fraccion: id_fraccion,
                 ruta: fileLocationUnix
             });
