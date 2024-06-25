@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import './Header.css';  // Estilos para el header
-import { host } from '../conexion.js' // Importar el host actual
+import { host } from '../../conexion.js' // Importar el host actual
 
 
 function Header() {
@@ -9,7 +9,6 @@ function Header() {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   useEffect(() => {
-    // fetch('http://localhost:8000/logo')
     fetch( host + '/logo')
       .then(response => response.json())
       .then(data => {
@@ -48,9 +47,11 @@ function Header() {
             align={{lg:"end"}}
             onClick={() => handleDropdownClick('gobierno')}
           >
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
+            <NavDropdown.Item href="/Gobierno/Plan_municipal">Plan Municipal</NavDropdown.Item>
+            <NavDropdown.Item href="/Gobierno/Mision_vision">Misión, Visión</NavDropdown.Item>
+            <NavDropdown.Item href="/Gobierno/Directorio">Directorio</NavDropdown.Item>
+            <NavDropdown.Item href="/Gobierno/Dependencias">Dependencias</NavDropdown.Item>
+            <NavDropdown.Item href="/Gobierno/Historia_municipio">Historia del Municipio</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown 
             title="Turismo" 
@@ -59,7 +60,7 @@ function Header() {
             align={{lg:"end"}}
             onClick={() => handleDropdownClick('turismo')}
           >
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
+            <NavDropdown.Item href="/Turismo">Principal Turismo</NavDropdown.Item>
             <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
             <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
           </NavDropdown>
@@ -81,11 +82,10 @@ function Header() {
             align={{lg:"end"}}
             onClick={() => handleDropdownClick('transparencia')}
           >
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
+            <NavDropdown.Item href="/Transparencia/Conac">Conac</NavDropdown.Item>
+            <NavDropdown.Item href="/Transparencia/Ley_general">Ley General</NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="/about">Noticias</Nav.Link>
+          <Nav.Link href="/noticias">Noticias</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo_footer from '../static/images/white.png'
+import logo_footer from '../../static/images/white.png'
 import { Container, Row, Col } from 'react-bootstrap';
 import './Footer.css';
 
@@ -41,9 +41,9 @@ function Footer() {
 
 
   return (
-    <footer className="footer mt-5 p-4">
+    <footer className="footer p-4">
       <Container>
-        <Row>
+        <Row className='content'>
           <Col className="footer-section">
           <div>
             <img src={logo_footer} alt="Footer Image" className="footer-image" />
@@ -74,20 +74,20 @@ function Footer() {
           <Col className="footer-section">
             <div>
               <ul className="footer-list">
-              <li><a href="#">Gobierno</a></li>
+              <li><a href="/Gobierno">Gobierno</a></li>
               <li><a href="#">Turismo</a></li>
               <li><a href="#">Tramites y Servicios</a></li>
-              <li><a href="#">Transparencia</a></li>
-              <li><a href="#">Noticias</a></li>
+              <li><a href="/Transparencia">Transparencia</a></li>
+              <li><a href="/Noticias">Noticias</a></li>
             </ul>
             </div>
           </Col>
-          <Col className="footer-section">
+          <Col className="footer-section no-border">
             <p>Nuestras Redes Sociales</p>
             <div className="footer-icons">
-              {IconFacebook}
-              {IconXtwitter}
-              {IconYoutube}
+              <a href='https://www.facebook.com/Tulantepec/'>{IconFacebook}</a>
+              <a href='https://x.com/Santiago_Tpec'>{IconXtwitter}</a>
+              <a href='https://www.youtube.com/channel/UCFTvex3ic3LlMt6N3OTsdhA'>{IconYoutube}</a>
             </div>
           </Col>
         </Row>

@@ -1,0 +1,88 @@
+/* Plan_municipal.css */
+@import '../../components/variables.scss';
+
+.separator {
+    border: none;
+    border-top: 5px solid rgba(0, 0, 0, 0.2); /* Aumentar el grosor de la línea a 2px */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 3px;
+  }
+
+.title-section{
+    font-weight: bold;
+    color: var(--primary) ;
+    display: flex;
+    justify-content: center;
+    font-size: 1.9rem;
+    margin-bottom: 30px;
+}
+
+.directorio-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 70%; /* Ancho del 90% del contenedor padre */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  justify-content: space-between;
+}
+
+
+.directorio-cuadro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 220px;
+  width: 160px !important;
+  background-color: var(--background);
+  border: 2px solid var(--secondary);
+  border-radius: 20px;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  width: 15%;
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  padding: 0;
+  margin-top: 15px;
+}
+
+.directorio-imagen-container{
+  /* width: 120px;
+  height: 120px; */
+  width: 16vh;
+  height: 16vh;
+  border: 2px solid var(--primary);
+  overflow: hidden;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: -15px;
+  background-color: var(--white);
+}
+
+.directorio-texto-container{
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: -20px;
+}
+
+
+.directorio-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.directorio-nombre{
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.directorio-cargo{
+  font-size: 0.7rem;
+  color: var(--secondary-text);
+}
+
+.directorio-telefono, .directorio-email{
+  font-size: 0.7rem;
+  color: rgb(183, 183, 183);
+}

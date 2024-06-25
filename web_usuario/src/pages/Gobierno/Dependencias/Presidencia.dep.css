@@ -1,0 +1,160 @@
+/* Plan_municipal.css */
+@import '../../../components/variables.scss';
+
+.separator {
+    border: none;
+    border-top: 5px solid rgba(0, 0, 0, 0.2); /* Aumentar el grosor de la línea a 2px */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 3px;
+  }
+
+.title-section{
+    font-weight: bold;
+    color: var(--primary) ;
+    display: flex;
+    justify-content: center;
+    font-size: 1.9rem;
+    margin-bottom: 30px;
+}
+
+
+.dependencia-datos{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  width: 60%;
+}
+
+.dependencia-datos-imagen-container{
+  height: auto;
+  width: 40%;
+  aspect-ratio: 1;
+  background-color: gray;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.dependencia-datos-texto{
+  width: 40%;
+  margin-left: 15px;
+}
+
+.dependencia-datos-nombre{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.dependencia-datos-cargo{
+  font-size: 1.0rem;
+  font-weight: bold;
+  color: var(--secondary-text);
+}
+
+.svg-container-text{
+  display: flex;
+  flex-direction: row;
+}
+
+.svg-container-text svg{
+  height: 20px;
+  margin-top: -5px;
+  margin-right: 5px;
+  fill: var(--secondary);
+}
+
+.svg-container-text div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.svg-container-text a{
+  margin-top: -5px;
+  color: var(--secondary) !important;
+}
+
+
+.dependencia-datos-contactos-1{
+  font-size: 0.8rem;
+  color: var(--secondary-text);
+}
+
+.dependencia-datos-nombre, .dependencia-datos-cargo, .dependencia-datos-contactos-1{
+  margin-top: -5px;
+}
+
+.dependencia-contactos-container{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  justify-content: left;
+}
+
+
+.dependencia-tramites-container a{
+  text-decoration: none;
+}
+
+.dependencia-contactos-container a{
+  color: var(--secondary-text);
+}
+
+.dependencia-tramites-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+
+.generic-container-variant-1{
+  width: 100%;
+}
+
+.dependencia-tramites-fila{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+
+.dependencia-tramites-fila a{
+  display: flex;
+  justify-content: center;
+  width: 25%;
+
+}
+
+.custom-btn-7 {
+  background-color: var(--secondary); /* Color de fondo personalizado */
+  height: 100px;
+  width: 90%; /* Ancho personalizado */
+  padding: 5px 5px; /* Aumentar el padding para un botón más grande */
+  border-radius: 10px; /* Bordes redondeados */
+  color: var(--white); /* Color del texto */
+  font-size: 1rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.custom-btn-7:hover{
+  color: var(--secondary);
+  background-color: var(--white);
+}
+
+.dependencia-responsabilidad-container{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+

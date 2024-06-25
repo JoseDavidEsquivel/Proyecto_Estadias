@@ -1,0 +1,94 @@
+/* Plan_municipal.css */
+@import '../../components/variables.scss';
+
+.separator {
+    border: none;
+    border-top: 5px solid rgba(0, 0, 0, 0.2); /* Aumentar el grosor de la línea a 2px */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 3px;
+  }
+
+.title-section{
+    font-weight: bold;
+    color: var(--primary) ;
+    display: flex;
+    justify-content: center;
+    font-size: 1.9rem;
+    margin-bottom: 30px;
+}
+
+.dependencia-content{
+    display: flex;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.dependencia-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%; /* Ancho del 90% del contenedor padre */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  justify-content: space-between;
+}
+
+
+.dependencia-cuadro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 250px;
+  width: 25% !important;
+  background-color: var(--background);
+  border: 2px solid var(--secondary);
+  border-radius: 20px;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  width: 15%;
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  padding: 0;
+  margin-top: 15px;
+}
+
+.dependencia-imagen-container{
+  /* width: 120px;
+  height: 120px; */
+  width: 18vh;
+  height: 18vh;
+  border: 2px solid var(--primary);
+  overflow: hidden;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: -25px;
+  background-color: var(--white);
+}
+
+.dependencia-texto-container{
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+.dependencia-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dependencia-dependencia{
+  margin-top: -15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.dependencia-link{
+    margin-top: 40px;
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+
+.dependencia-link a{
+    color: var(--secondary);
+}

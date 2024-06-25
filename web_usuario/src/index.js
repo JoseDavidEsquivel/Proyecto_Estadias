@@ -5,7 +5,7 @@ import App from './App';
 
 // Estilos 
 import './index.css'; // Tus estilos personalizados
-import './components/Header.css'; // Ajusta la ruta según la ubicación de tu archivo CSS
+import './components/Header/Header.css'; // Ajusta la ruta según la ubicación de tu archivo CSS
 
 
 ReactDOM.render(

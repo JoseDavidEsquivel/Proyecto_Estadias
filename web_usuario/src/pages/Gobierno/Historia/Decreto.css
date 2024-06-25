@@ -1,0 +1,46 @@
+/* Decreto.css */
+@import '../../../components/variables.scss';
+
+.separator {
+    border: none;
+    border-top: 5px solid rgba(0, 0, 0, 0.2); /* Aumentar el grosor de la línea a 2px */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 3px;
+  }
+
+.title-section{
+    font-weight: bold;
+    color: var(--primary) ;
+    display: flex;
+    justify-content: center;
+    font-size: 1.9rem;
+    margin-bottom: 30px;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 0;
+}
+
+.button-container a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.custom-btn-1 {
+    background-color: var(--secondary); /* Color de fondo personalizado */
+    width: 100px; /* Ancho personalizado */
+    padding: 5px 5px; /* Aumentar el padding para un botón más grande */
+    border-radius: 10px; /* Bordes redondeados */
+    color: var(--white); /* Color del texto */
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+    font-size: 1rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  }
+

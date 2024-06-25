@@ -1,0 +1,149 @@
+/* Plan_municipal.css */
+@import '../../components/variables.scss';
+
+.separator {
+    border: none;
+    border-top: 5px solid rgba(0, 0, 0, 0.2); /* Aumentar el grosor de la línea a 2px */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 3px;
+  }
+
+.title-section{
+    font-weight: bold;
+    color: var(--primary) ;
+    display: flex;
+    justify-content: center;
+    font-size: 1.9rem;
+    margin-bottom: 30px;
+}
+
+.fraccion-container{
+    background-color: var(--secondary);
+    width: 80%;
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+    margin-bottom: 15px;
+    color: var(--white);
+    display: flex;
+    flex-direction: row;
+    height: 65px;
+    border-radius: 8px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.fraccion-title-container{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Solo para que el texto sea visible en el fondo azul */
+}
+
+.fraccion-title{
+    align-self: center;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.fraccion-content{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white; /* Solo para que el texto sea visible en el fondo azul */
+    font-size: 1rem;
+    height: 100%;
+    
+}
+
+.fraccion-desc, .fraccion-buttons-container{
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.fraccion-desc p{
+    align-self: center;
+    margin: 0;
+}
+
+
+
+.button-container-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+}
+
+.button-container-2 a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.custom-btn-4 {
+    background-color: var(--white); /* Color de fondo personalizado */
+    width: 90%; /* Ancho personalizado */
+    height: 80%;
+    padding: 0px 0px; /* Aumentar el padding para un botón más grande */
+    border-radius: 8px; /* Bordes redondeados */
+    color: var(--secondary); /* Color del texto */
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+    font-size: 0.9rem;
+  }
+
+.custom-btn-4:hover{
+    color: var(--white) !important ;
+    border-color: var(--white);
+}
+
+@media (max-width: 768px) {
+    .fraccion-container{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: 90%;
+        margin-bottom: 15px;
+    }
+    .fraccion-title-container{
+        justify-content: left;
+        margin-left: 4%;
+        margin-top: 2%;
+        width: 100%;
+        height: 40%;
+    }
+
+    .fraccion-title{
+        font-size: 1.4em;
+    }
+    .fraccion-content{
+        justify-content: left;
+        width: 100%;
+        height: 60%;
+    }
+    .fraccion-desc{
+        margin-bottom: 2%;
+        margin-left: 4%;
+        font-size: 0.9rem;
+    }
+    .fraccion-buttons-container{
+        margin-bottom: 14%;
+        flex-wrap: wrap;
+    }
+    .button-container-2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        width: 50%;
+    }
+    .custom-btn-4{
+        padding: 3px 0px; /* Aumentar el padding para un botón más grande */
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+}
+

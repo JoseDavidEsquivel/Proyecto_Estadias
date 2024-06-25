@@ -1,0 +1,38 @@
+/* Header.css */
+@import '../variables.scss';
+
+
+.navigator-container{
+    display: flex;
+    align-items: center;
+    width: 90%; /* Ancho del 90% del contenedor padre */
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+    flex-direction: row;
+    color: var(--secondary-text);
+    font-size: 0.8rem;
+  }
+
+.navigator-link{
+    display: flex;
+    align-items: flex-end;
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+.navigator-link a{
+    text-decoration: none; /* Sin subrayado */
+    color: var(--secondary-text);
+}
+
+.actual-link{
+    text-decoration: none; /* Sin subrayado */
+    color: var(--secondary) !important;
+}
+
+
+.navigator-icon{
+    padding-left: 20px;
+    width: 45px;
+    height: 45px;
+}
+

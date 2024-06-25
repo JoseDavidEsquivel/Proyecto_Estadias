@@ -1,5 +1,5 @@
 /* Header.css */
-@import 'variables.scss';
+@import '../variables.scss';
 
 /* .navbar-custom {
   background-color: var(--color_header_background); 
@@ -12,15 +12,15 @@
   top: 0;
   width: 100%;
   z-index: 1000; /* Asegura que el header esté sobre otros elementos */
-  background-color: var(--color_header_background);
-  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--background);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 
 
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link,
 .navbar-custom .nav-dropdown {
-  color: #666666; /* Asegura que el texto de los enlaces también sea gris */
+  color: var(--secondary-text); /* Asegura que el texto de los enlaces también sea gris */
 }
 
 .navbar-brand img {
@@ -53,22 +53,22 @@
 }
 
 .dropdown-item {
-  color: var(--color_header_font); /* Cambiar el color del texto para asegurar que sea visible */
+  color: var(--primary); /* Cambiar el color del texto para asegurar que sea visible */
 }
 
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-  color: var(--color_header_font);
+  color: var(--secondary-text);
 }
 
 /* Cambiar el color de fondo del elemento del menú desplegable cuando se pasa el cursor por encima */
 .dropdown-item:hover {
-  background-color: var(--color_secondary); /* Color de fondo cuando se pasa el cursor */
-  color: #fff; /* Cambiar el color del texto para asegurar que sea visible */ 
+  background-color: var(--secondary); /* Color de fondo cuando se pasa el cursor */
+  color: var(--background); /* Cambiar el color del texto para asegurar que sea visible */ 
 }
 
 .dropdown-item {
   display: flex;
-  color: var(--color_header_font);
+  color: var(--secondary-text);
   justify-content: right;
 }
 
@@ -81,15 +81,50 @@
   border-radius: 0;
 }
 
-.nav-dropdown-toggle-shadow {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajusta la sombra según tus necesidades */
-}
+
 
 ::after {
-  color: var(--color_secondary);
+  color: var(--secondary);
 }
 
 /* Estilos para el dropdown activo */
 .navbar-nav-scroll.active-dropdown > .nav-link {
-  border-top: 4px solid var(--color_secondary); /* Cambia var(--color_secondary) por el color que desees */
+  border-top: 4px solid var(--secondary); /* Cambia var(--color_secondary) por el color que desees */
+}
+
+@media (max-width: 768px) {
+  .ms-auto {
+    padding-right: 0px;
+  }
+  .navbar-custom .nav-link + .nav-link,
+  .navbar-custom .nav-link + .dropdown,
+  .navbar-custom .dropdown + .nav-link,
+  .navbar-custom .dropdown + .dropdown {
+    margin-left: 0px; /* Espacio entre los enlaces y el dropdown */
+  }
+  .collapse {
+    display: flex;
+    justify-self: right;
+    margin-left: 20px;
+  }
+
+  .navbar-custom .nav-link, .navbar-custom .nav-dropdown {
+    color: var(--secondary-text);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+
+  .logo_header {
+    padding-left: 30px;
+  }
+
+
+  /* .navbar-nav-scroll.active-dropdown > .nav-link {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  } */
+
+  
 }

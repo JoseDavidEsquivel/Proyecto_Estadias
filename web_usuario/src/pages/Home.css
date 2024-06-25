@@ -1,4 +1,5 @@
 /* Home.css */
+@import '../components/variables.scss';
 
 .carousel-container {
   width: 90%; /* Ancho del 90% del contenedor padre */
@@ -6,8 +7,8 @@
 }
 
 .carousel-image {
-  max-height: 400px;
-  min-height: 400px;
+  max-height: 420px;
+  min-height: 420px;
   object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsionar */
   border-radius: 25px;
 }
@@ -30,18 +31,377 @@
 
 .carousel-indicators {
   position: absolute;
-  display: flex;
-  list-style: none;
+  /* margin-bottom: -30px; */
 }
 
+.carousel-indicators button{
+  height: 10px !important;
+  width: 30px !important;
+  /* background-color: black !important; */
+}
 
 .carousel-indicators .active {
-  background-color: #e83c4c; /* Color de fondo del indicador activo */
+  background-color: #e83c4c !important;
 }
 
 .separator {
   border: none;
   border-top: 5px solid rgba(0, 0, 0, 0.2); /* Aumentar el grosor de la línea a 2px */
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 3px;
+}
+
+.title-section{
+  font-weight: bold;
+  color: var(--primary) ;
+  display: flex;
+  justify-content: center;
+  font-size: 1.9rem;
+  margin-bottom: 30px;
+}
+
+
+.noticias-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 95%; /* Ancho del 90% del contenedor padre */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  justify-content: space-between;
+}
+
+.noticia-cuadro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 400px;
+  background-color: var(--background);
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  border-radius: 25px;
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  padding: 0;
+}
+
+
+.noticia-imagen-container{
+  width: 100%;
+  height: 60%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  overflow: hidden;
+}
+
+.noticia-texto-container{
+  height: 40%;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.noticia-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noticia-titulo{
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.noticia-fecha{
+  color: var(--secondary-text);
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+.noticia-link{
+  display: flex;
+  justify-content: right;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: var(--secondary);
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+.noticia-button-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 0;
+}
+
+.custom-btn-1 {
+  background-color: var(--secondary); /* Color de fondo personalizado */
+  width: 100px; /* Ancho personalizado */
+  padding: 5px 5px; /* Aumentar el padding para un botón más grande */
+  border-radius: 10px; /* Bordes redondeados */
+  color: var(--white); /* Color del texto */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  font-size: 1rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.contactos-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 95%; /* Ancho del 90% del contenedor padre */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  justify-content: space-between;
+}
+
+.contacto-cuadro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  background-color: var(--background);
+  border: 2px solid var(--secondary);
+  border-radius: 20px;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  width: 15%;
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  padding: 0;
+  margin-top: 15px;
+}
+
+.contacto-imagen-container{
+  /* width: 120px;
+  height: 120px; */
+  width: 16vh;
+  height: 16vh;
+  border: 2px solid var(--secondary);
+  overflow: hidden;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: -15px;
+  background-color: var(--white);
+}
+
+.contacto-texto-container{
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.contacto-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contacto-institucion{
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.contacto-contacto{
+  font-size: 0.7rem;
+  color: var(--secondary-text);
+}
+
+.contacto-horario{
+  font-size: 0.7rem;
+  color: rgb(183, 183, 183);
+}
+
+.custom-btn-2 {
+  background-color: var(--secondary); /* Color de fondo personalizado */
+  width: 50px; /* Ancho personalizado */
+  padding: 2px 5px; /* Aumentar el padding para un botón más grande */
+  border-radius: 10px; /* Bordes redondeados */
+  color: var(--white); /* Color del texto */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  font-size: 0.7rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.eventos-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 85%; /* Ancho del 90% del contenedor padre */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  justify-content: space-between;
+}
+
+
+.evento-cuadro1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  background-color: var(--background);
+  width: 30%;
+  border-radius: 25px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+.evento-cuadro2{
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  height: auto;
+  background-color: var(--background);
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  border-radius: 25px;
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  padding: 0;
+  align-content: flex-start;
+  padding-bottom: 4%;
+}
+
+.separator-content {
+  border: none;
+  border-top: 3px solid var(--secondary); /* Aumentar el grosor de la línea a 2px */
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 3px;
+  width: 95%;
+  height: 2%;
+  margin: 0 auto;
+  
+}
+
+.evento-title{
+  color: var(--primary-text);
+  padding-top: 5%;
+  padding-left: 4%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  height: auto;
+  align-items: flex-start;
+}
+
+.evento-desc{
+  color: var(--primary-text);
+  padding-top: 3%;
+  padding-left: 5%;
+  font-size: 0.9rem;
+  height: 35%;
+}
+
+.evento-extra{
+  color: var(--primary-text);
+  padding-top: 3%;
+  padding-left: 5%;
+  font-size: 0.9rem;
+  height: 25%;
+}
+
+.evento-extra-fila{
+  display: flex;
+  flex-direction: row;
+}
+
+.evento-extra-fila p{
+  padding-left: 7px;
+}
+
+.buzon-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 65%; /* Ancho del 90% del contenedor padre */
+  margin: 0 auto; /* Centra el carrusel horizontalmente */
+  justify-content: space-between;
+}
+
+.buzon-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.buzon-form{
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.form-control{
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.form-control:focus{
+  color: var(--secondary);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 0.25rem var(--secondary-pale);
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--secondary-pale);
+  opacity: 1; /* Firefox */
+}
+
+.buzon-leyenda{
+  display: flex;
+  width: 45%;
+  align-content: center;
+  color: var(--secondary-text)
+}
+
+
+@media (max-width: 768px) {
+  .p-5{
+    padding: 0px;
+  }
+
+  .content-padding{
+    padding: 0;
+  }
+
+  .navbar-toggler {
+    margin-right: 5%;
+  }
+
+  .carousel-container {
+    width: 100%; /* Ancho del 90% del contenedor padre */
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+  }
+
+  .carousel-image {
+    max-height: 200px;
+    min-height: 100px;
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsionar */
+    border-radius: 25px;
+  }
+
+  .content, .buzon-content{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contacto-cuadro{
+    width: 70%;
+    margin-bottom: 5%;
+  }
+  .noticia-cuadro{
+    width: 90%;
+    margin-bottom: 10%;
+  }
+
+  .evento-cuadro1{
+    width: 100%;
+    margin-bottom: 5%;
+  }
+    
+  .evento-cuadro2{
+   width: 100%;
+  }
+
+  .buzon-container, .buzon-leyenda, .buzon-form{
+    width: 100%;
+  }
+
 }

@@ -1,0 +1,26 @@
+<hr className="separator" />
+
+                    <div className='generic-container'>
+                        <Row>
+                            <h1 className='title-section'>PRESIDENCIA MUNICIPAL</h1>
+                        </Row>
+                    
+                        <div className='dependencia-datos'>
+                            <div className='dependencia-datos-imagen-container'>
+                                <div className='dependencia-detos-imagen'></div>
+                            </div>
+                            <div className='dependencia-datos-texto'>
+                                <p className='dependencia-datos-nombre'>Nombre</p>
+                                <p className='dependencia-datos-cargo'>Cargo</p>
+                                <div className='svg-container-text'>
+                                    {svgPhone}
+                                    <p className='dependencia-datos-contactos-1'>Telefono</p>
+                                </div>
+                                <div className='svg-container-text'>
+                                    {svgEmail}
+                                    <p className='dependencia-datos-contactos-1'>Email</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
