@@ -8,9 +8,9 @@ import Navigator from '../../../components/Navigator/Navigator.js';
 function Personajes() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
-        { name: 'Gobierno', path: '/Gobierno', current: false },
-        { name: 'Historia del Municipio', path: '/Gobierno/Historia_municipio', current: false },
-        { name: 'Decreto del Municipio', path: '/Gobierno/Historia_municipio/Decreto', current: true },
+        { name: 'Gobierno', path: '/gobierno', current: false },
+        { name: 'Historia del Municipio', path: '/gobierno/Historia_municipio', current: false },
+        { name: 'Decreto del Municipio', path: '/gobierno/Historia_municipio/Decreto', current: true },
       ];
 
     return (

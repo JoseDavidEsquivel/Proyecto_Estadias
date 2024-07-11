@@ -7,7 +7,7 @@ import Navigator from '../../components/Navigator/Navigator.js';
 function Directorio() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
-        { name: 'Gobierno', path: '/Gobierno', current: false },
+        { name: 'Gobierno', path: '/gobierno', current: false },
         { name: 'Directorio', path: '#', current: true },
     ];
     const [funcionarios, setFuncionarios] = useState([]);

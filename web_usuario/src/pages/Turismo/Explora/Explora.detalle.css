@@ -1,0 +1,5 @@
+.leaflet-top, .leaflet-bottom {
+    position: absolute;
+    z-index: 500;
+    pointer-events: none;
+}

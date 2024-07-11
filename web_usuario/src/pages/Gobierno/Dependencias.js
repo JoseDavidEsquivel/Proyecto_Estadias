@@ -4,10 +4,17 @@ import './Dependencias.css'; // Estilos para la pagina landing Home
 import { host } from '../../conexion.js'; // Importar el host actual
 import Navigator from '../../components/Navigator/Navigator.js';
 
+import presidencia_logo from '../../static/images/no_title_logo.png'
+import caasst_logo from '../../static/images/caasst.png'
+import proteccion_logo from '../../static/images/proteccion.png'
+import dif_logo from '../../static/images/dif.png'
+
+import seguridad_logo from '../../static/images/seguridad.png'
+
 function Depencencias() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
-        { name: 'Gobierno', path: '/Gobierno', current: false },
+        { name: 'Gobierno', path: '/gobierno', current: false },
         { name: 'Dependencias', path: '#', current: true },
       ];
 
@@ -26,58 +33,58 @@ function Depencencias() {
                         <div className='dependencia-content'>
                             <div className='dependencia-cuadro'>
                                 <div className='dependencia-imagen-container'>
-                                    <img scr='' alt='' className='dependencia-image'/>
+                                    <img src={presidencia_logo} className="dependencia-image" />
                                 </div>
                                 <div className='contacto-texto-container'>
                                     <div className='dependencia-dependencia'>Presidencia Municipal</div>
-                                    <div className='dependencia-link'><a href='/Gobierno/Dependencias/Presidencia_municipal'>Ver dependencias</a></div>
+                                    <div className='dependencia-link'><a href='/gobierno/dependencias/presidencia_municipal'>Ver dependencias</a></div>
                                 </div>
                             </div>
                             <div className='dependencia-cuadro'>
                                 <div className='dependencia-imagen-container'>
-                                    <img scr='' alt='' className='dependencia-image'/>
+                                    <img src={caasst_logo} className="dependencia-image" />
                                 </div>
                                 <div className='contacto-texto-container'>
                                     <div className='dependencia-dependencia'>Agua Potable</div>
-                                    <div className='dependencia-link'><a href='#'>Ver dependencias</a></div>
+                                    <div className='dependencia-link'><a href='/gobierno/dependencias/agua_potable'>Ver dependencias</a></div>
                                 </div>
                             </div>
                             <div className='dependencia-cuadro'>
                                 <div className='dependencia-imagen-container'>
-                                    <img scr='' alt='' className='dependencia-image'/>
+                                    <img src={dif_logo} className="dependencia-image" />
                                 </div>
                                 <div className='contacto-texto-container'>
                                     <div className='dependencia-dependencia'>Sistema DIF</div>
-                                    <div className='dependencia-link'><a href='#'>Ver dependencias</a></div>
+                                    <div className='dependencia-link'><a href='/gobierno/dependencias/dif'>Ver dependencias</a></div>
                                 </div>
                             </div>
                         </div>
                         <div className='dependencia-content'>
                             <div className='dependencia-cuadro'>
                                 <div className='dependencia-imagen-container'>
-                                    <img scr='' alt='' className='dependencia-image'/>
+                                    <img src={''} className="dependencia-image" />
                                 </div>
                                 <div className='contacto-texto-container'>
                                     <div className='dependencia-dependencia'>Bibliotecas</div>
-                                    <div className='dependencia-link'><a href='#'>Ver dependencias</a></div>
+                                    <div className='dependencia-link'><a href='/gobierno/dependencias/bibliotecas'>Ver dependencias</a></div>
                                 </div>
                             </div>
                             <div className='dependencia-cuadro'>
                                 <div className='dependencia-imagen-container'>
-                                    <img scr='' alt='' className='dependencia-image'/>
+                                    <img src={seguridad_logo} className="dependencia-image" />
                                 </div>
                                 <div className='contacto-texto-container'>
                                     <div className='dependencia-dependencia'>Seguridad Publica</div>
-                                    <div className='dependencia-link'><a href='#'>Ver dependencias</a></div>
+                                    <div className='dependencia-link'><a href='/gobierno/dependencias/seguridad'>Ver dependencias</a></div>
                                 </div>
                             </div>
                             <div className='dependencia-cuadro'>
                                 <div className='dependencia-imagen-container'>
-                                    <img scr='' alt='' className='dependencia-image'/>
+                                    <img src={proteccion_logo} className="dependencia-image" />
                                 </div>
                                 <div className='contacto-texto-container'>
                                     <div className='dependencia-dependencia'>Bomberos y Protección Civil</div>
-                                    <div className='dependencia-link'><a href='#'>Ver dependencias</a></div>
+                                    <div className='dependencia-link'><a href='/gobierno/dependencias/proteccion_civil'>Ver dependencias</a></div>
                                 </div>
                             </div>
                         </div>

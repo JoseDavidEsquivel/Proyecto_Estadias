@@ -7,7 +7,7 @@ import Navigator from '../../components/Navigator/Navigator.js';
 function Mision_vision() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
-        { name: 'Gobierno', path: '/Gobierno', current: false },
+        { name: 'Gobierno', path: '/gobierno', current: false },
         { name: 'Misión y Visión', path: '#', current: true },
       ];
 

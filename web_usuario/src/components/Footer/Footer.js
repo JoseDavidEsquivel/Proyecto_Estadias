@@ -74,7 +74,7 @@ function Footer() {
           <Col className="footer-section">
             <div>
               <ul className="footer-list">
-              <li><a href="/Gobierno">Gobierno</a></li>
+              <li><a href="/gobierno">Gobierno</a></li>
               <li><a href="#">Turismo</a></li>
               <li><a href="#">Tramites y Servicios</a></li>
               <li><a href="/Transparencia">Transparencia</a></li>

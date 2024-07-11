@@ -56,13 +56,13 @@ function Transparencia() {
                         </Row>
                         <Row className='button-content'>
                             <div className='button-container'>
-                                <a href='/Transparencia/Conac' rel="noopener noreferrer">
+                                <a href='/transparencia/conac' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgDecreto} 
                                         CONAC
                                     </button>
                                 </a>
-                                <a href='/Transparencia/Ley_general' rel="noopener noreferrer">
+                                <a href='/transparencia/ley_general' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgDecreto} 
                                         Ley General

@@ -9,8 +9,8 @@ function Decreto() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
         { name: 'Gobierno', path: '#', current: false },
-        { name: 'Historia del Municipio', path: '/Gobierno/Historia_municipio', current: false },
-        { name: 'Decreto del Municipio', path: '/Gobierno/Historia_municipio/Decreto', current: true },
+        { name: 'Historia del Municipio', path: '/gobierno/Historia_municipio', current: false },
+        { name: 'Decreto del Municipio', path: '/gobierno/Historia_municipio/Decreto', current: true },
       ];
 
     return (

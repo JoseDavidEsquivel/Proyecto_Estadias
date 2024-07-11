@@ -3,6 +3,9 @@ import { Container, Row, Col, Carousel, Modal, Button} from 'react-bootstrap';
 import './Home.css'; // Estilos para la pagina landing Home
 import { host } from '../conexion.js'; // Importar el host actual
 import CalendarWithEvents from '../components/Calendar/Calendar.js';
+// import updateScssFile from '../components/update-scss.js';
+
+import defaultCarrusel from '../static/images/no_image_default_aviso.png'
 
 const svgCalendar = (
   <svg className='svg-icon' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +42,9 @@ function Home() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedEvents, setSelectedEvents] = useState([]);
 
-
+  // useEffect(() => {
+  //   updateScssFile();
+  // }, []);
 
   useEffect(() => {
     fetch(`${host}/avisos/activos`)
@@ -103,6 +108,16 @@ function Home() {
     fetchEventos();
   }, []);
 
+  const convertToUTC = (dateString) => {
+    const date = new Date(dateString);
+    return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+};
+
+  const formatDate = (dateString) => {
+      const date = convertToUTC(dateString);
+      return date.toLocaleDateString('es-MX', { timeZone: 'UTC' });
+  };
+
   useEffect(() => {
     if (selectedDate) {
       const selectedDateEvents = eventos.filter(event =>
@@ -129,7 +144,7 @@ function Home() {
     };
 
     try {
-      const response = await fetch('http://localhost:8000/buzon/crear', {
+      const response = await fetch(host + '/evento', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -163,24 +178,34 @@ function Home() {
     <Container className="p-4 my-5 rounded-3">
       <Row className="mt-5">
         <Col> 
-          <div className="carousel-container">
-            <Carousel
-              nextIcon={<span className="carousel-control-custom">{svgRight}</span>}
-              prevIcon={<span className="carousel-control-custom">{svgLeft}</span>}
-            >
-              {carouselItems.map((item, index) => (
-                <Carousel.Item key={index}>
-                  <a href={item.url} target="_blank" rel="noopener noreferrer">
-                    <img
-                      className="d-block w-100 carousel-image"
-                      src={`${host}/${item.ruta}${item.imagen}`}
-                      alt={`Slide ${index + 1}`}
-                    />
-                  </a>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </div>
+        <div className="carousel-container">
+      <Carousel
+        nextIcon={<span className="carousel-control-custom">{svgRight}</span>}
+        prevIcon={<span className="carousel-control-custom">{svgLeft}</span>}
+      >
+        {carouselItems.length > 0 ? (
+          carouselItems.map((item, index) => (
+            <Carousel.Item key={index}>
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <img
+                  className="d-block w-100 carousel-image"
+                  src={`${item.ruta}`}
+                  alt={`Slide ${index + 1}`}
+                />
+              </a>
+            </Carousel.Item>
+          ))
+        ) : (
+          <Carousel.Item>
+            <img
+              className="d-block w-100 carousel-image"
+              src={defaultCarrusel}
+              alt="Imagen por defecto"
+            />
+          </Carousel.Item>
+        )}
+      </Carousel>
+    </div>
 
           <hr className="separator" />
 
@@ -193,14 +218,15 @@ function Home() {
                 <div key={contacto.id_contacto} className='contacto-cuadro'>
                   <div className='contacto-imagen-container'>
                     <img
-                      src={`${host}/${contacto.ruta}/${contacto.imagen}`}
+                      src={`${contacto.ruta}`}
                       alt={contacto.nombre_institucion}
                       className='noticia-image'
                     />
                   </div>
                   <div className='contacto-texto-container'>
                     <div className='contacto-institucion'>{contacto.nombre_institucion}</div>
-                    <div className='contacto-contacto'>{contacto.contacto}</div>
+                    <div className='contacto-contacto'>{contacto.telefono}</div>
+                    <div className='contacto-contacto'>{contacto.email}</div>
                     <div className='contacto-horario'>{contacto.horario}</div>
                     <button
                       type='button'
@@ -226,7 +252,7 @@ function Home() {
               {noticias.map((noticia, index) => (
                 <div className='noticia-cuadro' key={index}>
                   <div className='noticia-imagen-container'>
-                    <img src={`${host}/${noticia.ruta}${noticia.imagen}`} className="noticia-image" alt="noticia" />
+                    <img src={`${noticia.ruta}`} className="noticia-image" alt="noticia" />
                   </div>
                   <div className='noticia-texto-container'>
                     <div className='noticia-titulo'><p>{noticia.titulo}</p></div>
@@ -239,25 +265,28 @@ function Home() {
               ))}
             </Row>
             <Row>
-              <div className='noticia-button-container'>
-                <button type="button" className="btn custom-btn-1" href='/noticias'>Ver más</button>
+              
+              <div className='noticia-button-container-home'>
+                <a href='/noticias'>
+                  <button type="button" className="btn custom-btn-1">Ver más</button>
+                </a>
               </div>
             </Row>
 
             {selectedNoticia && (
-              <Modal show={showModal} onHide={handleCloseModal}>
+              <Modal show={showModal} onHide={handleCloseModal} className='ventana-emergente'>
                 <Modal.Header closeButton>
                   <Modal.Title>{selectedNoticia.titulo}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <img src={`${host}/${selectedNoticia.ruta}${selectedNoticia.imagen}`} alt="noticia" className="img-fluid" />
+                  <img src={`${selectedNoticia.ruta}`} alt="noticia" className="img-fluid" />
                   <p>{selectedNoticia.descripcion}</p>
                   <p>{selectedNoticia.contenido}</p>
                   <p><strong>Fecha:</strong> {new Date(selectedNoticia.fecha).toLocaleDateString()}</p>
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="btn custom-btn-1" onClick={handleCloseModal}>
-                    Cerrar
+                  <Button variant="btn custom-btn-1" href={`/noticias/${selectedNoticia.id_noticia}`} onClick={handleCloseModal}>
+                    Leer mas
                   </Button>
                 </Modal.Footer>
               </Modal>
@@ -286,7 +315,7 @@ function Home() {
                         <p>{event.descripcion}</p>
                       </div>
                       <div className='evento-extra'>
-                        <div className='evento-extra-fila'>{svgCalendar}<p>{new Date(event.fecha).toLocaleDateString()}</p></div>
+                        <div className='evento-extra-fila'>{svgCalendar}<p>{formatDate(event.fecha)}</p></div>
                         <div className='evento-extra-fila'>{svgClock}<p>{new Date(event.hora * 1000).toLocaleTimeString()}</p></div>
                       </div>
                     </div>
@@ -296,6 +325,13 @@ function Home() {
                     <p>No hay ningun evento en esta fecha</p>
                   </div>
                 )}
+              </div>
+            </Row>
+            <Row>
+              <div className='noticia-button-container-home'>
+                <a href='/turismo/eventos'>
+                  <button type="button" className="btn custom-btn-1">Ver más</button>
+                </a>
               </div>
             </Row>
           </div>

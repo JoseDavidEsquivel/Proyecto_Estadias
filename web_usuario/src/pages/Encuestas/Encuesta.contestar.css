@@ -1,0 +1,116 @@
+@import '../../components/variables.scss';
+
+.encuesta-titulo-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    width: 65%;
+    border-radius: 25px;
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+    padding: 0;
+    margin-top: -50px;
+}
+
+.encuesta-titulo{
+    font-size: 2.0rem;
+    color: var(--primary);
+    font-weight: bold;
+    margin-top: 50px;
+    padding-bottom: 0;
+}
+
+.encuesta-titulo-decoracion{
+    height: 25px;
+    width: 100%;
+    background-color: var(--primary);
+}
+
+.encuesta-pregunta-container{
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: right;
+    height: auto;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    width: 65%;
+    border-radius: 20px;
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+    margin-top: 30px;
+}
+
+.encuesta-pregunta-content{
+    display: flex;
+    flex-direction: column;
+    justify-self: right;
+    background-color: white;
+    width: 98.75%;
+    height: 100%;
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+}
+
+.encuesta-pregunta{
+    font-size: 1.05rem;
+    color: var(--primary-text);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.encuesta-pregunta-opciones{
+    font-size: 0.95rem;
+    color: var(--primary-text);
+}
+
+.encuesta-pregunta-opciones label{
+    margin-left: 5px;
+}
+
+.encuesta-opcion input:checked{
+    color: var(--primary);
+    border-color: var(--primary);
+    background-color: var(--primary);
+}
+
+.encuesta-opcion input:focus{
+    border-color: var(--primary);
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}
+
+.encuesta-texto {
+    width: 96%;
+    border: none; /* Elimina todos los bordes */
+    border-bottom: 2px solid #ccc; /* Borde inferior por defecto */
+    padding: 8px 0; /* Ajusta el padding según sea necesario */
+    transition: border-color 0.3s ease-in-out; /* Transición suave para el cambio de color del borde */
+}
+
+.encuesta-button-container{
+    padding-top: 20px;
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin: 0 auto;
+}
+
+.custom-btn-form {
+    background-color: var(--primary); /* Color de fondo personalizado */
+    width: 150px; /* Ancho personalizado */
+    height: 40px;
+    padding: 5px 5px; /* Aumentar el padding para un botón más grande */
+    border-radius: 10px; /* Bordes redondeados */
+    color: var(--white); /* Color del texto */
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+    font-size: 1rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  }
+
+.custom-btn-form :hover{
+    color: var(--primary) !important;
+}

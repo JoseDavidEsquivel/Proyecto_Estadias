@@ -16,7 +16,7 @@ function Ley_general() {
 
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
-        { name: 'Transparencia', path: '#', current: false },
+        { name: 'Transparencia', path: '/transparencia', current: false },
         { name: 'Ley General', path: '#', current: true },
     ];
 

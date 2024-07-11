@@ -1,0 +1,12 @@
+:root {
+    --primary: #e83c4c;
+    --secondary: #78b42c;
+    --primary-text: black;
+    --secondary-text: #666666;
+    --extra-text: #b3b3b3;
+    --background: white;
+    --white: white;
+
+    --primary-pale: #f29da5;
+    --secondary-pale: #e3f0d5;
+}

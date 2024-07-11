@@ -32,7 +32,7 @@ const svgPresidente = (
 function Historia_menu() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
-        { name: 'Gobierno', path: '/Gobierno', current: false },
+        { name: 'Gobierno', path: '/gobierno', current: false },
         { name: 'Historia del Municipio', path: '#', current: true },
       ];
 
@@ -56,7 +56,7 @@ function Historia_menu() {
                                         Historia
                                     </button>
                                 </a>
-                                <a href='/Gobierno/Historia_municipio/Decreto' rel="noopener noreferrer">
+                                <a href='/gobierno/historia_municipio/Decreto' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgDecreto} 
                                         Decreto del Municipio
@@ -64,13 +64,13 @@ function Historia_menu() {
                                 </a>
                             </div>
                             <div className='button-container'>
-                                <a href='/Gobierno/Historia_municipio/Personajes_ilustres' rel="noopener noreferrer">
+                                <a href='/gobierno/historia_municipio/Personajes_ilustres' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgPersonajes} 
                                         Personajes Ilustres
                                     </button>
                                 </a>
-                                <a href='/Gobierno/Hisrotia_municipio/Expresidentes' rel="noopener noreferrer">
+                                <a href='/gobierno/hisrotia_municipio/Expresidentes' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgPresidente} 
                                         Expresidentes

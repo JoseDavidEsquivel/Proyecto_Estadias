@@ -4,6 +4,8 @@ import './Principal.turismo.css'; // Estilos para la pagina landing Home
 import { host } from '../../conexion.js'; // Importar el host actual
 import Navigator from '../../components/Navigator/Navigator.js';
 
+import defaultCarrusel from '../../static/images/no_image_default_aviso.png'
+
 
 function Principal_turismo() {
     
@@ -40,18 +42,31 @@ function Principal_turismo() {
 
     const [eventos, setEventos] = useState([]);
 
-    useEffect(() => {
-        fetch(`${host}/evento`)
-            .then(response => response.json())
-            .then(data => {
-                // Ordenar los eventos por fecha
-                const sortedEvents = data.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-                // Obtener los 3 eventos más cercanos a la fecha actual
-                const closestEvents = sortedEvents.slice(0, 3);
-                setEventos(closestEvents);
-            })
-            .catch(error => console.error('Error fetching events:', error));
-    }, []);
+useEffect(() => {
+    fetch(`${host}/evento`)
+        .then(response => response.json())
+        .then(data => {
+            const today = new Date();
+            // Filtrar los eventos que no hayan pasado
+            const futureEvents = data.filter(event => new Date(event.fecha) >= today);
+            // Ordenar los eventos por fecha
+            const sortedEvents = futureEvents.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+            // Obtener los 3 eventos más cercanos a la fecha actual
+            const closestEvents = sortedEvents.slice(0, 3);
+            setEventos(closestEvents);
+        })
+        .catch(error => console.error('Error fetching events:', error));
+}, []);
+
+const convertToUTC = (dateString) => {
+    const date = new Date(dateString);
+    return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+};
+
+const formatDate = (dateString) => {
+    const date = convertToUTC(dateString);
+    return date.toLocaleDateString('es-MX', { timeZone: 'UTC' });
+};
   
     return (
         <Col>
@@ -89,7 +104,7 @@ para ofrecerte</p>
                     </div>
                     <div className='container-turismo-child-2'>
                         <div className='carousel-container-2'>
-                            <Carousel>
+                            {/* <Carousel>
                             {carouselItems.map((item, index) => (
                                 <Carousel.Item key={index}>
                                 
@@ -101,6 +116,29 @@ para ofrecerte</p>
                             
                                 </Carousel.Item>
                             ))}
+                            </Carousel> */}
+                            <Carousel>
+                                {carouselItems.length > 0 ? (
+                                carouselItems.map((item, index) => (
+                                    <Carousel.Item key={index}>
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                        <img
+                                        className="d-block w-100 carousel-image-2"
+                                        src={`${host}/${item.ruta}${item.imagen}`}
+                                        alt={`Slide ${index + 1}`}
+                                        />
+                                    </a>
+                                    </Carousel.Item>
+                                ))
+                                ) : (
+                                <Carousel.Item>
+                                    <img
+                                    className="d-block w-100 carousel-image-2"
+                                    src={defaultCarrusel}
+                                    alt="Imagen por defecto"
+                                    />
+                                </Carousel.Item>
+                                )}
                             </Carousel>
                         </div>
                     </div>
@@ -118,16 +156,13 @@ para ofrecerte</p>
                             {eventos.map(evento => (
                                 <div key={evento.id_evento} className='turismo-eventos-cuadro'>
                                     <div className='turismo-eventos-imagen'>
-                                        <img
-                                            src={`${host}/${evento.ruta}${evento.imagen}`}
-                                            alt={evento.titulo}
-                                        />
+                                        <img src={`${host}/${evento.ruta}${evento.imagen}`} alt={evento.titulo} />
                                     </div>
                                     <div className='turismo-eventos-titulo'>
                                         <p>{evento.titulo}</p>
                                     </div>
                                     <div className='turismo-eventos-fecha'>
-                                        <p>{new Date(evento.fecha).toLocaleDateString()}</p>
+                                        <p>{formatDate(evento.fecha)}</p>
                                     </div>
                                     <div className='turismo-button-container'>
                                         <button className="btn custom-btn-6">Leer más</button>
@@ -151,7 +186,7 @@ para ofrecerte</p>
 algunos datos de utilidad que te pueden ayudar a planear mejor tu estadía.</p>
                             </div>
                         <div className='turismo-button-container variant-4'>
-                            <button className="btn custom-btn-6 variant-3">Conocelos</button>
+                            <button className="btn custom-btn-8 variant-3">Conocelos</button>
                         </div>
                     </div>
                 <div>
@@ -174,7 +209,7 @@ Prepárate para disfrutar de todo lo que Santiago Tulantepec tiene para ofrecert
 Tienes todo un municipio por descubrir solo o en compañia.</p>
                             </div>
                         <div className='turismo-button-container variant-4'>
-                            <button className="btn custom-btn-6 variant-3">Conocer mas</button>
+                            <button className="btn custom-btn-8 variant-3">Conocer mas</button>
                         </div>
                     </div>
                 <div>

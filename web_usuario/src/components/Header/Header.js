@@ -14,7 +14,7 @@ function Header() {
       .then(data => {
         if (data.length > 0) {
           const { archivo, ruta } = data[0];
-          setLogoUrl( host + `/${ruta}${archivo}`);
+          setLogoUrl(`${ruta}`);
         }
       })
       .catch(error => {
@@ -47,11 +47,11 @@ function Header() {
             align={{lg:"end"}}
             onClick={() => handleDropdownClick('gobierno')}
           >
-            <NavDropdown.Item href="/Gobierno/Plan_municipal">Plan Municipal</NavDropdown.Item>
-            <NavDropdown.Item href="/Gobierno/Mision_vision">Misión, Visión</NavDropdown.Item>
-            <NavDropdown.Item href="/Gobierno/Directorio">Directorio</NavDropdown.Item>
-            <NavDropdown.Item href="/Gobierno/Dependencias">Dependencias</NavDropdown.Item>
-            <NavDropdown.Item href="/Gobierno/Historia_municipio">Historia del Municipio</NavDropdown.Item>
+            <NavDropdown.Item href="/gobierno/plan_municipal">Plan Municipal</NavDropdown.Item>
+            <NavDropdown.Item href="/gobierno/mision_vision">Misión, Visión</NavDropdown.Item>
+            <NavDropdown.Item href="/gobierno/directorio">Directorio</NavDropdown.Item>
+            <NavDropdown.Item href="/gobierno/dependencias">Dependencias</NavDropdown.Item>
+            <NavDropdown.Item href="/gobierno/historia_municipio">Historia del Municipio</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown 
             title="Turismo" 
@@ -60,21 +60,13 @@ function Header() {
             align={{lg:"end"}}
             onClick={() => handleDropdownClick('turismo')}
           >
-            <NavDropdown.Item href="/Turismo">Principal Turismo</NavDropdown.Item>
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
+            <NavDropdown.Item href="/turismo">Turismo</NavDropdown.Item>
+            <NavDropdown.Item href="/turismo/eventos">Eventos</NavDropdown.Item>
+            <NavDropdown.Item href="/turismo/conoce">Conoce Santiago</NavDropdown.Item>
+            <NavDropdown.Item href="/turismo/tips">Tips para Turistas</NavDropdown.Item>
+            <NavDropdown.Item href="/turismo/explora">Explora Santiago</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown 
-            title="Tramites y Servicios" 
-            id="basic-nav-dropdown" 
-            className={`navbar-nav-scroll ${activeDropdown === 'tramites' ? 'active-dropdown' : ''}`}
-            align={{lg:"end"}}
-            onClick={() => handleDropdownClick('tramites')}
-          >
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
-            <NavDropdown.Item href="#">Sample Text</NavDropdown.Item>
-          </NavDropdown>
+          <Nav.Link href="/tramites_servicios">Tramites y Servicios</Nav.Link>
           <NavDropdown 
             title="Transparencia" 
             id="basic-nav-dropdown" 
@@ -82,10 +74,11 @@ function Header() {
             align={{lg:"end"}}
             onClick={() => handleDropdownClick('transparencia')}
           >
-            <NavDropdown.Item href="/Transparencia/Conac">Conac</NavDropdown.Item>
-            <NavDropdown.Item href="/Transparencia/Ley_general">Ley General</NavDropdown.Item>
+            <NavDropdown.Item href="/transparencia/conac">Conac</NavDropdown.Item>
+            <NavDropdown.Item href="/transparencia/ley_general">Ley General</NavDropdown.Item>
           </NavDropdown>
           <Nav.Link href="/noticias">Noticias</Nav.Link>
+          <Nav.Link href="/encuestas">Encuestas</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

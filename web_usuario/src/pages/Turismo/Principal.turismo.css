@@ -254,9 +254,9 @@
     margin-bottom: 10px;
 }
 
-.custom-btn-6 {
+.custom-btn-8 {
     background-color: var(--secondary); /* Color de fondo personalizado */
-    width: 100%; /* Ancho personalizado */
+    width: 80%; /* Ancho personalizado */
     padding: 3px 5px; /* Aumentar el padding para un botón más grande */
     border-radius: 10px; /* Bordes redondeados */
     color: var(--white); /* Color del texto */
@@ -265,7 +265,7 @@
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
   }
 
-.custom-btn-6:hover{
+.custom-btn-8:hover{
     color: var(--secondary);
     background-color: var(--white);
 }

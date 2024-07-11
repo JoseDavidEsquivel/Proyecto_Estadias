@@ -4,6 +4,8 @@
 .carousel-container {
   width: 90%; /* Ancho del 90% del contenedor padre */
   margin: 0 auto; /* Centra el carrusel horizontalmente */
+  overflow: hidden;
+  border-radius: 25px;
 }
 
 .carousel-image {
@@ -126,12 +128,18 @@
   font-size: 0.8rem;
 }
 
-.noticia-button-container{
+.noticia-button-container-home{
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 40px;
     padding: 0;
+}
+
+.noticia-button-container-home a{
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
 }
 
 .custom-btn-1 {
@@ -159,7 +167,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 200px;
+  height: 250px;
   background-color: var(--background);
   border: 2px solid var(--secondary);
   border-radius: 20px;
@@ -197,6 +205,7 @@
 }
 
 .contacto-institucion{
+  margin-top: -15px;
   font-size: 0.9rem;
   font-weight: bold;
 }
@@ -349,6 +358,15 @@
   width: 45%;
   align-content: center;
   color: var(--secondary-text)
+}
+
+.modal{
+  --bs-modal-width: 1000px;
+  text-align: justify;
+}
+
+.modal .img-fluid{
+  width: 100%;
 }
 
 

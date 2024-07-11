@@ -1,0 +1,65 @@
+@import '../../components/variables.scss';
+
+.container-tips-1{
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding-top: 140px;
+    padding-bottom: 40px;
+}
+
+.container-tips-2{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.container-tips-3{
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.container-tips-3-content{
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.container-tips-4{
+    background-color: var(--white);
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}

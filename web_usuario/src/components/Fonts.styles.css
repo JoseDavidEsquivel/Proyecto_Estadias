@@ -1,0 +1,71 @@
+@import './variables.scss';
+
+.weight-normal{
+    font-weight: normal;
+}
+
+.weight-bold{
+    font-weight: bold;
+}
+
+
+
+.f-size-5r{font-size: 5rem;}
+
+.f-size-4-5r{font-size: 4.5rem;}
+
+.f-size-4r{font-size: 4rem;}
+
+.f-size-3r{font-size: 3rem;}
+
+.f-size-2-5r{font-size: 2.5rem;}
+
+.f-size-2r{font-size: 2rem;}
+
+.f-size-1-5r{font-size: 1.5rem;}
+
+.f-size-1-25r{font-size: 1.25rem;}
+
+.f-size-1r{font-size: 1rem;}
+
+.f-size-0-75r{font-size: 0.75rem;}
+
+
+
+.f-color-white{color: white;}
+
+.f-color-primary{
+    color: var(--primary);
+}
+
+.f-color-secondary{
+    color: var(--secondary);
+}
+
+.f-color-primary-text{
+    color: var(--primary-text);
+}
+
+.f-color-secondary-text{
+    color: var(--secondary-text);
+}
+
+/* ALINEACIONES */
+.t-align-justify{
+    text-align: justify;
+}
+
+/* ANCHURAS */
+.p-width-100{width: 100%;}
+
+.p-width-70{width: 70%;}
+
+.p-width-50{width: 50%;}
+
+.p-width-45{width: 45%;}
+
+.p-width-35{width: 35%;}
+
+
+/* PADDINGS */
+.p-padd-l-5px{padding-left: 5px;}

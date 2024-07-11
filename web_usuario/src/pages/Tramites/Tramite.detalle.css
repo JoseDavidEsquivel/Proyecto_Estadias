@@ -1,0 +1,25 @@
+@import '../../components/variables.scss';
+
+
+.tramite-info-main{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.tramite-info-container{
+    width: 48%;
+}
+
+.tramite-info-subtitulo{
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: var(--primary);
+    text-align: center;
+}
+
+.tramite-info-list{
+    font-size: 1.0rem;
+}

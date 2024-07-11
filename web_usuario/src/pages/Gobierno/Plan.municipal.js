@@ -8,7 +8,7 @@ import Navigator from '../../components/Navigator/Navigator.js';
 function Plan_municipal() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
-        { name: 'Gobierno', path: '/Gobierno', current: false },
+        { name: 'Gobierno', path: '/gobierno', current: false },
         { name: 'Plan Municipal', path: '#', current: true },
       ];
 

@@ -56,19 +56,19 @@ function Gobierno() {
                         </Row>
                         <Row className='button-content'>
                             <div className='button-container'>
-                                <a href='/Gobierno/Plan_municipal' rel="noopener noreferrer">
+                                <a href='/gobierno/plan_municipal' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgPlan} 
                                         Plan Municipal
                                     </button>
                                 </a>
-                                <a href='/Gobierno/Mision_vision' rel="noopener noreferrer">
+                                <a href='/gobierno/mision_vision' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgDecreto} 
                                         Misión y Visión
                                     </button>
                                 </a>
-                                <a href='/Gobierno/Directorio' rel="noopener noreferrer">
+                                <a href='/gobierno/directorio' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgDirectorio}
                                         Directorio
@@ -76,13 +76,13 @@ function Gobierno() {
                                 </a>
                             </div>
                             <div className='button-container'>
-                                <a href='/Gobierno/Dependencias' rel="noopener noreferrer">
+                                <a href='/gobierno/dependencias' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgDependencias} 
                                         Dependencias
                                     </button>
                                 </a>
-                                <a href='/Gobierno/Historia_municipio' rel="noopener noreferrer">
+                                <a href='/gobierno/historia_municipio' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgHistory}  
                                         Historia del Municipio

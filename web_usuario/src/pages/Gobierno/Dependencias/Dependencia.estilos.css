@@ -44,12 +44,14 @@
 .dependencia-datos-nombre{
   font-size: 1.2rem;
   font-weight: bold;
+  text-align: left;
 }
 
 .dependencia-datos-cargo{
   font-size: 1.0rem;
   font-weight: bold;
   color: var(--secondary-text);
+  text-align: left;
 }
 
 .svg-container-text{
@@ -72,7 +74,7 @@
 }
 
 .svg-container-text a{
-  margin-top: -5px;
+  /* margin-top: -5px; */
   color: var(--secondary) !important;
 }
 
@@ -80,6 +82,10 @@
 .dependencia-datos-contactos-1{
   font-size: 0.8rem;
   color: var(--secondary-text);
+}
+
+.dependencia-datos-contactos-1 a{
+  text-decoration: none;
 }
 
 .dependencia-datos-nombre, .dependencia-datos-cargo, .dependencia-datos-contactos-1{
@@ -116,7 +122,8 @@
 .dependencia-tramites-fila{
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
   margin-bottom: 15px;
 }

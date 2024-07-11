@@ -1,0 +1,18 @@
+ahora, quiero que en el boton de leer mas te mande una pagina donde reciba los datos de la consulta a 'host' + /evento/{id_evento}:
+
+{eventos.map(evento => (
+                                <div key={evento.id_evento} className='turismo-eventos-cuadro'>
+                                    <div className='turismo-eventos-imagen'>
+                                        <img src={`${host}/${evento.ruta}${evento.imagen}`} alt={evento.titulo} />
+                                    </div>
+                                    <div className='turismo-eventos-titulo'>
+                                        <p>{evento.titulo}</p>
+                                    </div>
+                                    <div className='turismo-eventos-fecha'>
+                                        <p>{formatDate(evento.fecha)}</p>
+                                    </div>
+                                    <div className='turismo-button-container'>
+                                        <button className="btn custom-btn-6">Leer más</button>
+                                    </div>
+                                </div>
+                            ))}

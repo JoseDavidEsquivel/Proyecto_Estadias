@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col} from 'react-bootstrap';
-import './Presidencia.dep.css'; // Estilos para la pagina landing Home
+import './Dependencia.estilos.css'; // Estilos para la pagina landing Home
 import { host } from '../../../conexion.js'; // Importar el host actual
 import Navigator from '../../../components/Navigator/Navigator.js';
 
@@ -54,11 +54,11 @@ const svgUbicacion = (
     <svg viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>youtube</title> <path d="M12.932 20.459v-8.917l7.839 4.459zM30.368 8.735c-0.354-1.301-1.354-2.307-2.625-2.663l-0.027-0.006c-3.193-0.406-6.886-0.638-10.634-0.638-0.381 0-0.761 0.002-1.14 0.007l0.058-0.001c-0.322-0.004-0.701-0.007-1.082-0.007-3.748 0-7.443 0.232-11.070 0.681l0.434-0.044c-1.297 0.363-2.297 1.368-2.644 2.643l-0.006 0.026c-0.4 2.109-0.628 4.536-0.628 7.016 0 0.088 0 0.176 0.001 0.263l-0-0.014c-0 0.074-0.001 0.162-0.001 0.25 0 2.48 0.229 4.906 0.666 7.259l-0.038-0.244c0.354 1.301 1.354 2.307 2.625 2.663l0.027 0.006c3.193 0.406 6.886 0.638 10.634 0.638 0.38 0 0.76-0.002 1.14-0.007l-0.058 0.001c0.322 0.004 0.702 0.007 1.082 0.007 3.749 0 7.443-0.232 11.070-0.681l-0.434 0.044c1.298-0.362 2.298-1.368 2.646-2.643l0.006-0.026c0.399-2.109 0.627-4.536 0.627-7.015 0-0.088-0-0.176-0.001-0.263l0 0.013c0-0.074 0.001-0.162 0.001-0.25 0-2.48-0.229-4.906-0.666-7.259l0.038 0.244z"></path> </g></svg>
   );
 
-function Dependencia_1() {
+function Presidencia_municipal() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
-        { name: 'Gobierno', path: '/Gobierno', current: false },
-        { name: 'Dependencias', path: '/Gobierno/Dependencias', current: false },
+        { name: 'Gobierno', path: '/gobierno', current: false },
+        { name: 'Dependencias', path: '/gobierno/dependencias', current: false },
         { name: 'Presidencia', path: '#', current: true },
       ];
 
@@ -82,6 +82,26 @@ function Dependencia_1() {
         fetchContacto();
     }, []);
 
+    const [funcionario, setFuncionario] = useState(null);
+
+    useEffect(() => {
+        const fetchFuncionario = async () => {
+            try {
+                const response = await fetch(`${host}/funcionario`);
+                if (!response.ok) {
+                    throw new Error('Error fetching funcionario');
+                }
+                const data = await response.json();
+                const presidente = data.find(item => item.puesto === 'Presidente Municipal Constitucional');
+                setFuncionario(presidente);
+            } catch (error) {
+                console.error('Error fetching funcionario:', error);
+            }
+        };
+
+        fetchFuncionario();
+    }, []);
+
     return (
         <Container className="p-5 my-5 rounded-3">
             <Row className="mt-5">
@@ -94,24 +114,32 @@ function Dependencia_1() {
                         <Row>
                             <h1 className='title-section'>PRESIDENCIA MUNICIPAL</h1>
                         </Row>
-                    
-                        <div className='dependencia-datos'>
-                            <div className='dependencia-datos-imagen-container'>
-                                <div className='dependencia-detos-imagen'></div>
-                            </div>
-                            <div className='dependencia-datos-texto'>
-                                <p className='dependencia-datos-nombre'>Nombre</p>
-                                <p className='dependencia-datos-cargo'>Cargo</p>
-                                <div className='svg-container-text'>
-                                    {svgPhone}
-                                    <p className='dependencia-datos-contactos-1'>Telefono</p>
+                        {funcionario ? (
+                            <div className='dependencia-datos'>
+                                <div className='dependencia-datos-imagen-container'>
+                                    <img 
+                                        src={`${host}/${funcionario.ruta}${funcionario.imagen}`} 
+                                        alt={funcionario.nombre_funcionario} 
+                                        className='dependencia-datos-imagen'
+                                    />
                                 </div>
-                                <div className='svg-container-text'>
-                                    {svgEmail}
-                                    <p className='dependencia-datos-contactos-1'>Email</p>
+                                <div className='dependencia-datos-texto'>
+                                    <p className='dependencia-datos-nombre'>{funcionario.nombre_funcionario}</p>
+                                    <p className='dependencia-datos-cargo'>{funcionario.puesto}</p>
+                                    <div className='svg-container-text'>
+                                        {svgPhone}
+                                        <p className='dependencia-datos-contactos-1'>{funcionario.telefono}</p>
+                                    </div>
+                                    <div className='svg-container-text'>
+                                        {svgEmail}
+                                        <p className='dependencia-datos-contactos-1'>{funcionario.correo}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ) : (
+                            <p>Cargando datos...</p>
+                        )}
+    
                         
                     </div>
 
@@ -127,9 +155,7 @@ function Dependencia_1() {
                                 <div>
                                     <div className='svg-container-text'>
                                         {svgUbicacion}
-                                        <a href='#' rel="noopener noreferrer">
                                             <p className='dependencia-datos-contactos-1'>{contacto.direccion}</p>
-                                        </a>
                                     </div>
                                     <div className='svg-container-text'>
                                         {svgPhone}
@@ -148,15 +174,16 @@ function Dependencia_1() {
                                     </div>
                                     <div className='svg-container-text'>
                                         {svgFacebook}
-                                        <p className='dependencia-datos-contactos-1'>{contacto.facebook || 'No disponible'}</p>
+                                        <a href={contacto.facebook || '#'} rel="noopener noreferrer"><p className='dependencia-datos-contactos-1'>{contacto.facebook ? 'Página de Facebook' : 'No disponible'}</p></a>
+                                        
                                     </div>
                                     <div className='svg-container-text'>
                                         {svgXtwitter}
-                                        <p className='dependencia-datos-contactos-1'>{contacto.x || 'No disponible'}</p>
+                                        <a href={contacto.x || '#'} rel="noopener noreferrer"><p className='dependencia-datos-contactos-1'>{contacto.x ? 'Página de Twitter' : 'No disponible'}</p></a>
                                     </div>
                                     <div className='svg-container-text'>
                                         {svgYoutube}
-                                        <p className='dependencia-datos-contactos-1'>{contacto.youtube || 'No disponible'}</p>
+                                        <a href={contacto.youtube || '#'} rel="noopener noreferrer"><p className='dependencia-datos-contactos-1'>{contacto.youtube ? 'Página de Youtube' : 'No disponible'}</p></a>
                                     </div>
                                 </div>
                             </div>
@@ -171,28 +198,6 @@ function Dependencia_1() {
                             <h1 className='title-section'>TRAMITES Y SERVICIOS</h1>
                         </Row>
                         <div className='dependencia-tramites-container'>
-                            <div className='dependencia-tramites-fila'>
-                                <a href='#' rel="noopener noreferrer">
-                                    <button type="button" className="btn custom-btn-7">
-                                        Expresidentes
-                                    </button>
-                                </a>
-                                <a href='#' rel="noopener noreferrer">
-                                    <button type="button" className="btn custom-btn-7">
-                                        Expresidentes
-                                    </button>
-                                </a>
-                                <a href='#' rel="noopener noreferrer">
-                                    <button type="button" className="btn custom-btn-7">
-                                        Expresidentes
-                                    </button>
-                                </a>
-                                <a href='#' rel="noopener noreferrer">
-                                    <button type="button" className="btn custom-btn-7">
-                                        Expresidentes
-                                    </button>
-                                </a>
-                            </div>
                             <div className='dependencia-tramites-fila'>
                                 <a href='#' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-7">
@@ -221,4 +226,4 @@ políticas municipales, y la gestión de recursos y presupuestos municipales.</p
     );
   }
   
-  export default Dependencia_1;
+  export default Presidencia_municipal;

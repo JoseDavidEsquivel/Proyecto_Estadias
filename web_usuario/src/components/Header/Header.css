@@ -11,7 +11,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000; /* Asegura que el header esté sobre otros elementos */
+  z-index: 1025 !important; /* Asegura que el header esté sobre otros elementos */
   background-color: var(--background);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }

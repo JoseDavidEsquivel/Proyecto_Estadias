@@ -2,6 +2,7 @@
 .content-padding {
     padding-left: 10%;
     padding-right: 10%;
+    text-align: justify;
   }
   
 .content-grandfather{
@@ -19,4 +20,8 @@
 
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
+}
+
+.rsc-container{
+  font-family: 'Signika', sans-serif !important;
 }
