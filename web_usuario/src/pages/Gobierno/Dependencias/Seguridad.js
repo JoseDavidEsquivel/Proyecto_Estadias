@@ -112,7 +112,7 @@ function Seguridad() {
 
                     <div className='generic-container'>
                         <Row>
-                            <h1 className='title-section'></h1>
+                            <h1 className='title-section'>SEGURIDAD PUBLICA</h1>
                         </Row>
                     
                         {funcionario ? (

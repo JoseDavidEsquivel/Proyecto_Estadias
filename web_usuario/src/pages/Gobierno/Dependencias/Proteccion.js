@@ -112,7 +112,7 @@ function Proteccion() {
 
                     <div className='generic-container'>
                         <Row>
-                            <h1 className='title-section'>SEGURIDAD PUBLICA Y TRANSITO MUNICIPAL</h1>
+                            <h1 className='title-section'>BOMBEROS Y PROTECCIÓN CIVIL</h1>
                         </Row>
                     
                         {funcionario ? (
