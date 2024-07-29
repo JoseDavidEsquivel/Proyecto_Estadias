@@ -5,4 +5,5 @@
 uvicorn main:app --port 8000
 
 ### Montar API en Node.js
-npm run dev
+cd web_usuario
+npm start
