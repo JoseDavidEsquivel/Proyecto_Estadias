@@ -75,10 +75,11 @@ function Footer() {
             <div>
               <ul className="footer-list">
               <li><a href="/gobierno">Gobierno</a></li>
-              <li><a href="#">Turismo</a></li>
-              <li><a href="#">Tramites y Servicios</a></li>
-              <li><a href="/Transparencia">Transparencia</a></li>
-              <li><a href="/Noticias">Noticias</a></li>
+              <li><a href="/turismo">Turismo</a></li>
+              <li><a href="/tramites_servicios">Tramites y Servicios</a></li>
+              <li><a href="/transparencia">Transparencia</a></li>
+              <li><a href="/noticias">Noticias</a></li>
+              <li><a href="/encuestas">Encuestas</a></li>
             </ul>
             </div>
           </Col>

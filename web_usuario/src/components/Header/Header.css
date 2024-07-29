@@ -92,15 +92,15 @@
   border-top: 4px solid var(--secondary); /* Cambia var(--color_secondary) por el color que desees */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .ms-auto {
-    padding-right: 0px;
+    padding-right: 5px;
   }
   .navbar-custom .nav-link + .nav-link,
   .navbar-custom .nav-link + .dropdown,
   .navbar-custom .dropdown + .nav-link,
   .navbar-custom .dropdown + .dropdown {
-    margin-left: 0px; /* Espacio entre los enlaces y el dropdown */
+    margin-left: 5px; /* Espacio entre los enlaces y el dropdown */
   }
   .collapse {
     display: flex;
@@ -127,4 +127,13 @@
   } */
 
   
+}
+
+@media (min-width: 1200px){
+
+
+.navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
 }

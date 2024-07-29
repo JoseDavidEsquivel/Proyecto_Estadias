@@ -31,16 +31,16 @@ function Directorio() {
 
     const renderFuncionarios = () => {
         const rows = [];
-        for (let i = 0; i < funcionarios.length; i += 4) {
-            const rowItems = funcionarios.slice(i, i + 4);
+        for (let i = 0; i < funcionarios.length; i += 3) {
+            const rowItems = funcionarios.slice(i, i + 3);
             rows.push(
-                <Row key={i} className="mb-4">
+                <Row key={i} className="mb-4 directorio-child-container">
                     {rowItems.map(funcionario => (
-                        <Col key={funcionario.id_funcionario} xs={12} sm={6} md={3} className="mb-4">
+                        <Col key={funcionario.id_funcionario} className="mb-4">
                             <div className='directorio-cuadro'>
                                 <div className='directorio-imagen-container'>
                                     <img
-                                        src={`${host}/${funcionario.ruta}/${funcionario.imagen}`}
+                                        src={`${funcionario.ruta}`}
                                         alt={funcionario.nombre_funcionario}
                                         className='directorio-image'
                                     />
@@ -72,9 +72,9 @@ function Directorio() {
                         <Row>
                             <h1 className='title-section'>DIRECTORIO</h1>
                         </Row>
-                        <div className='content'>
+                        
                             {renderFuncionarios()}
-                        </div>
+                        
                     </div>
                 </Col>
             </Row>

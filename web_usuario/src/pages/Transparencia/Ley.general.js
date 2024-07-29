@@ -116,8 +116,12 @@ function Ley_general() {
                                 <ul>
                                     {documentos.filter(doc => doc.trimestre === trimestre).map(doc => (
                                         <li key={doc.id_documento}>
-                                            <a href={`${host}/${doc.ruta}`} target="_blank" rel="noopener noreferrer">
                                                 {doc.documento}
+                                            <a href={`https://docs.google.com/gview?url=${doc.ruta}&embedded=true`} target="_blank" rel="noopener noreferrer" style={{marginLeft:'10px'}}>
+                                                Previsualizar
+                                            </a>
+                                            <a href={`${doc.ruta}`} target="_blank" rel="noopener noreferrer" style={{marginLeft:'10px'}}>
+                                                Descargar
                                             </a>
                                         </li>
                                     ))}

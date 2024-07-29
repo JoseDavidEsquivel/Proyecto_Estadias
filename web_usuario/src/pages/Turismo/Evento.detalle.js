@@ -62,19 +62,19 @@ const Eventos_detalle = () => {
                     <div className='evento-detalle-main'>
                         <div className='evento-detalle-container-1'>
                             <div className='evento-detalle-imagen-container'>
-                                <img className='evento-detalle-imagen' src='#'></img>
+                                <img className='evento-detalle-imagen' src={evento.ruta}></img>
                             </div>
                             <div className='evento-detalle-info'>
                                 <div className='evento-detalle-titulo'>
                                     <p>{evento.titulo}</p>
                                 </div>
-                                <div className='evento-detalle-extra'>
+                                {/* <div className='evento-detalle-extra'>
                                     {svgUbicacion}
                                     <div className='evento-extra-container'>
                                         <p className='info-subtitlo'>Ubicacion</p>
                                         <p className='info-info'>Datos de Ubicacion</p>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className='evento-detalle-extra'>
                                     {svgCalendar}
                                     <div className='evento-extra-container'>

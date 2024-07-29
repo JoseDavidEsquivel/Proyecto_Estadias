@@ -1,61 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Carousel, Modal, Button} from 'react-bootstrap';
 import './Explora.css'; // Estilos para la pagina landing Home
-import { host } from '../../conexion.js'; // Importar el host actual
+// import { host } from '../../conexion.js'; // Importar el host actual
 
-import telefono from '../../static/images/telefono.png'
-
-import { svgPlaystoreWhite, svgAppleWhite } from '../../components/svgs.js';
 function Explora() {
     
-
-    const [logoUrl, setLogoUrl] = useState('');
-
-  
-    useEffect(() => {
-      fetch( host + '/logo')
-        .then(response => response.json())
-        .then(data => {
-          if (data.length > 0) {
-            const { archivo, ruta } = data[0];
-            setLogoUrl( host + `/${ruta}${archivo}`);
-            console.log(archivo, ruta)
-            console.log(host + `/${ruta}${archivo}`)
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching the logo:', error);
-        });
-    }, []);
-
-    const [carouselItems, setCarouselItems] = useState([]);
-  
-    useEffect(() => {
-      fetch(`${host}/avisos/activos`)
-        .then(response => response.json())
-        .then(data => {
-          setCarouselItems(data);
-        })
-        .catch(error => console.error('Error fetching active notices:', error));
-    }, []);
-
-    const [eventos, setEventos] = useState([]);
-
-useEffect(() => {
-    fetch(`${host}/evento`)
-        .then(response => response.json())
-        .then(data => {
-            const today = new Date();
-            // Filtrar los eventos que no hayan pasado
-            const futureEvents = data.filter(event => new Date(event.fecha) >= today);
-            // Ordenar los eventos por fecha
-            const sortedEvents = futureEvents.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-            // Obtener los 3 eventos más cercanos a la fecha actual
-            const closestEvents = sortedEvents.slice(0, 3);
-            setEventos(closestEvents);
-        })
-        .catch(error => console.error('Error fetching events:', error));
-}, []);
 
 const convertToUTC = (dateString) => {
     const date = new Date(dateString);

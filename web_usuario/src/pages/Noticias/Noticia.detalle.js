@@ -62,31 +62,17 @@ const Noticia_detalle = () => {
                     <div className='evento-detalle-main'>
                         <div className='evento-detalle-container-1'>
                             <div className='evento-detalle-imagen-container'>
-                                <img className='evento-detalle-imagen' src='#'></img>
+                                <img className='evento-detalle-imagen' src={noticia.ruta}></img>
                             </div>
                             <div className='evento-detalle-info'>
                                 <div className='evento-detalle-titulo'>
                                     <p>{noticia.titulo}</p>
                                 </div>
                                 <div className='evento-detalle-extra'>
-                                    {svgUbicacion}
-                                    <div className='evento-extra-container'>
-                                        <p className='info-subtitlo'>Ubicacion</p>
-                                        <p className='info-info'>Datos de Ubicacion</p>
-                                    </div>
-                                </div>
-                                <div className='evento-detalle-extra'>
                                     {svgCalendar}
                                     <div className='evento-extra-container'>
                                         <p className='info-subtitlo'>Fecha</p>
                                         <p className='info-info'>Datos de Fecha</p>
-                                    </div>
-                                </div>
-                                <div className='evento-detalle-extra'>
-                                    {svgClock}
-                                    <div className='evento-extra-container'>
-                                        <p className='info-subtitlo'>Horario</p>
-                                        <p className='info-info'>Datos de Horario</p>
                                     </div>
                                 </div>
                             </div>

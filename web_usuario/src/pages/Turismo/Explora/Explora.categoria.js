@@ -76,7 +76,7 @@ function Explora_categoria() {
                             {chunk.map(sitio => (
                                 <div key={sitio.id_explora} className='explora-sitio-cuadro'>
                                     <div className='explora-sitio-imagen'>
-                                        <img src={`${host}/${sitio.ruta}`} alt={sitio.nombre_sitio} />
+                                        <img src={`${sitio.ruta}`} alt={sitio.nombre_sitio} />
                                     </div>
                                     <div className='explora-sitio-nombre'>
                                         <p>{sitio.nombre_sitio}</p>

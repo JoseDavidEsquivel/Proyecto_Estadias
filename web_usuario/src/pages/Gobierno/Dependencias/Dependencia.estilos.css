@@ -36,8 +36,14 @@
   overflow: hidden;
 }
 
+.dependencia-datos-imagen-container img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .dependencia-datos-texto{
-  width: 40%;
+  width: 60%;
   margin-left: 15px;
 }
 
@@ -165,3 +171,31 @@
   font-size: 0.8rem;
 }
 
+@media (max-width:768px) {
+  .dependencia-datos{
+    width: 100%;
+  }
+  .svg-container-text p , .svg-container-text a{
+    width: 90%;
+  }
+  .dependencia-contactos-container{
+    width: 80%;
+  }
+
+  .dependencia-tramites-fila{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .dependencia-tramites-fila a{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .dependencia-responsabilidad-container{
+    width: 100%;
+  }
+}

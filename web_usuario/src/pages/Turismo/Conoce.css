@@ -229,6 +229,9 @@
 
 .conoce-content-2{
     width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .conoce-content-3{
@@ -257,4 +260,38 @@
     padding-bottom: 40px;
     width: 100%;
     z-index: 4;
+}
+
+@media (max-width:950px){
+    .container-conoce-5{
+        height: auto !important;
+    }
+    .custom-btn-8{
+        align-items: center;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width:720px){
+    .container-conoce-5{
+        height: 800px !important;
+    }
+    .conoce-content-section-2{
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .custom-btn-8{
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .conoce-telefono-img{
+        max-width: 100px;
+        margin: 0 auto;
+    }
+    .conoce-content-2{
+        display: flex;
+        justify-content: center;
+        margin-top: 5%;
+    }
 }

@@ -85,11 +85,31 @@
 }
 
 .dependencia-link{
-    margin-top: 40px;
+  margin-top: 40px;
   font-size: 0.8rem;
   color: var(--secondary);
 }
 
 .dependencia-link a{
     color: var(--secondary);
+}
+
+@media (min-width: 1601px) {
+  .dependencia-dependencia, .dependencia-link{
+    margin-top: 10px;
+  }
+}
+
+
+@media (max-width: 768px) {
+ .dependencia-content{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+ } 
+
+ .dependencia-cuadro{
+  width: 70% !important;
+  margin-bottom: 40px;
+ }
 }

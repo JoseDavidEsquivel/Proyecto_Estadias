@@ -8,7 +8,8 @@ function Expresidentes() {
     const navigatorLinks = [
         { name: 'Inicio', path: '/', current: false },
         { name: 'Gobierno', path: '/gobierno', current: false },
-        { name: 'Directorio', path: '#', current: true },
+        { name: 'Historia del Municipio', path: '/gobierno/historia_municipio', current: false },
+        { name: 'Expresidentes', path: '#', current: true },
     ];
     const [expresidentes, setExpresidentes] = useState([]);
 
@@ -40,7 +41,7 @@ function Expresidentes() {
                             <div className='expresidente-cuadro'>
                                 <div className='expresidente-imagen-container'>
                                     <img
-                                        src={`${host}/${expresidentes.ruta}/${expresidentes.imagen}`}
+                                        src={`${expresidentes.ruta}`}
                                         alt={expresidentes.nombre_expresidente}
                                         className='expresidente-image'
                                     />

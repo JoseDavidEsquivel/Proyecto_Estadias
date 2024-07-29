@@ -92,7 +92,7 @@ function Bibliotecas() {
                     throw new Error('Error fetching funcionario');
                 }
                 const data = await response.json();
-                const presidente = data.find(item => item.puesto === 'Director/a General de CAASST');
+                const presidente = data.find(item => item.puesto === 'Bibliotecas');
                 setFuncionario(presidente);
             } catch (error) {
                 console.error('Error fetching funcionario:', error);
@@ -119,7 +119,7 @@ function Bibliotecas() {
                             <div className='dependencia-datos'>
                                 <div className='dependencia-datos-imagen-container'>
                                     <img 
-                                        src={`${host}/${funcionario.ruta}${funcionario.imagen}`} 
+                                        src={`${funcionario.ruta}`} 
                                         alt={funcionario.nombre_funcionario} 
                                         className='dependencia-datos-imagen'
                                     />
@@ -200,9 +200,9 @@ function Bibliotecas() {
                         </Row>
                         <div className='dependencia-tramites-container'>
                             <div className='dependencia-tramites-fila'>
-                                <a href='#' rel="noopener noreferrer">
+                                <a href='/tramites_servicios' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-7">
-                                        Expresidentes
+                                        Ir a Tramites y Servicios
                                     </button>
                                 </a>
                             </div>

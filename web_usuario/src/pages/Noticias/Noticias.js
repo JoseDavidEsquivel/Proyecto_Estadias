@@ -98,7 +98,7 @@ function Noticias() {
                             {chunk.map(noticia => (
                                 <div key={noticia.id_noticia} className='noticias-noticia-cuadro'>
                                     <div className='noticias-noticia-imagen'>
-                                        <img src={`${host}/${noticia.ruta}${noticia.imagen}`} alt={noticia.titulo} />
+                                        <img src={`${noticia.ruta}`} alt={noticia.titulo} />
                                     </div>
                                     <div className='noticias-noticia-titulo'>
                                         <p>{noticia.titulo}</p>

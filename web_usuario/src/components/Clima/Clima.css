@@ -58,3 +58,29 @@
 .clima-imagen img{
     width: 100%;
 }
+
+@media (max-width:1000px){
+    .clima-imagen{
+        max-width: 0px;
+        max-height: 0px;
+    }
+}
+
+@media (max-width:720px){
+    .clima-container{
+        width: 100% !important;
+    }
+    .clima-imagen{
+        max-width: 300px;
+        max-height: 300px;
+    }
+}
+
+@media (max-width:420px){
+    .clima-container{
+        width: 150% !important;
+        margin-left: -25%;
+    }
+}
+
+

@@ -55,8 +55,9 @@
   }
 
 .container-turismo-1-header img{
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
 }
 
 .container-turismo-1-content{
@@ -303,4 +304,22 @@
     text-align: center;
   }
 
- 
+ @media (max-width: 1400px){
+  .container-turismo-1{
+    height: 600px;
+  }
+  .leyenda-turismo-2{
+    margin-top: 55px;
+    margin-bottom: 5px;
+  }
+ }
+
+ @media (max-width: 1150px){
+  .leyenda-turismo-2{
+    margin-top: 105px;
+    margin-bottom: 5px;
+  }
+  .container-turismo-1{
+    height: 600px;
+  }
+ }

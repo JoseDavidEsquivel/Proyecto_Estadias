@@ -52,10 +52,10 @@ function Gobierno() {
 
                     <div className='menu-container'>
                         <Row>
-                            <h1 className='title-section'>TRANSPARENCIA</h1>
+                            <h1 className='title-section'>GOBIERNO</h1>
                         </Row>
                         <Row className='button-content'>
-                            <div className='button-container'>
+                            <div className='button-gobierno-container'>
                                 <a href='/gobierno/plan_municipal' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgPlan} 
@@ -75,7 +75,7 @@ function Gobierno() {
                                     </button>
                                 </a>
                             </div>
-                            <div className='button-container'>
+                            <div className='button-gobierno-container'>
                                 <a href='/gobierno/dependencias' rel="noopener noreferrer">
                                     <button type="button" className="btn custom-btn-3">
                                         {svgDependencias} 

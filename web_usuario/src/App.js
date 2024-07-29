@@ -51,6 +51,7 @@ import Tramites_detalles from './pages/Tramites/Tramite.detalle';
 import Encuesta_lista from './pages/Encuestas/Encuestas';
 import Encuesta_contestar from './pages/Encuestas/Encuesta.contestar';
 import Conac_trimestre from './pages/Transparencia/Conac.trimestre';
+import Historia from './pages/Gobierno/Historia/Historia';
 
 function App() {
   return (
@@ -96,7 +97,9 @@ function App() {
           <Route path='/gobierno/historia_municipio' element={<Historia_menu/>} />
           <Route path="/gobierno/historia_municipio/decreto" element={<Decreto/>} />
           <Route path="/gobierno/historia_municipio/personajes_ilustres" element={<Personajes/>} />
-          <Route path="/gobierno/hisrotia_municipio/expresidentes" element={<Expresidentes/>} />
+          <Route path="/gobierno/historia_municipio/expresidentes" element={<Expresidentes/>} />
+          <Route path="/gobierno/historia_municipio/historia" element={<Historia/>} />
+
 
           <Route path="/tramites_servicios" element={<Tramites/>} />
           <Route path="/tramites_servicios/:documento" element={<Tramites_detalles/>} />

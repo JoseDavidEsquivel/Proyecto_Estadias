@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
+import { host } from '../../conexion.js'; // Asegúrate de que esta importación apunte a tu archivo de configuración del host
 
 const ChatbotComponent = () => {
+    const [userData, setUserData] = useState({ nombre: '', correo: '', problema: '' });
+
     const theme = {
         background: '#f5f8fb',
         headerBgColor: '#e73c4c',
@@ -17,6 +20,32 @@ const ChatbotComponent = () => {
         userFontSize: '15px',
     };
 
+    const handleEnd = ({ values }) => {
+        // Aquí se recopilan los datos del usuario y se envía la solicitud POST
+        const [nombre, correo, problema] = values;
+        const data = {
+            nombre,
+            correo,
+            problema,
+            area: 'ciudadania'
+        };
+
+        fetch(`${host}/bot/crear`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    };
+
     const steps = [
         {
             id: '1',
@@ -26,6 +55,13 @@ const ChatbotComponent = () => {
         {
             id: 'name',
             user: true,
+            validator: (value) => {
+                if (value.trim().length === 0) {
+                    return 'Por favor, ingresa tu nombre';
+                }
+                setUserData((prevData) => ({ ...prevData, nombre: value }));
+                return true;
+            },
             trigger: '3',
         },
         {
@@ -36,6 +72,14 @@ const ChatbotComponent = () => {
         {
             id: 'email',
             user: true,
+            validator: (value) => {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(value)) {
+                    return 'Por favor, ingresa un correo electrónico válido';
+                }
+                setUserData((prevData) => ({ ...prevData, correo: value }));
+                return true;
+            },
             trigger: '5',
         },
         {
@@ -50,7 +94,7 @@ const ChatbotComponent = () => {
                 { value: 'noticias', label: 'Noticias', trigger: 'noticias' },
                 { value: 'eventos', label: 'Eventos', trigger: 'eventos' },
                 { value: 'funcionarios', label: 'Funcionarios', trigger: 'funcionarios' },
-                { value: 'instituciones', label: 'Instituciones', trigger: 'instituciones' },
+                { value: 'dependencias', label: 'Dependencias', trigger: 'dependencias' },
                 { value: 'otro', label: 'Otro servicio', trigger: 'otro' },
             ],
         },
@@ -125,15 +169,15 @@ const ChatbotComponent = () => {
             trigger: 'more-help',
         },
         {
-            id: 'instituciones',
-            message: 'En esta página tenemos las instituciones más importantes de Santiago.',
-            trigger: 'instituciones-link',
+            id: 'dependencias',
+            message: 'En esta página tenemos las dependencias más importantes de Santiago.',
+            trigger: 'dependencias-link',
         },
         {
-            id: 'instituciones-link',
+            id: 'dependencias-link',
             component: (
-                <a href="/gobierno/institucion" target="_blank" rel="noopener noreferrer">
-                    Ir a Instituciones
+                <a href="/gobierno/dependencias" target="_blank" rel="noopener noreferrer">
+                    Ir a Dependencias
                 </a>
             ),
             trigger: 'more-help',
@@ -146,6 +190,13 @@ const ChatbotComponent = () => {
         {
             id: 'situation',
             user: true,
+            validator: (value) => {
+                if (value.trim().length === 0) {
+                    return 'Por favor, describe tu situación';
+                }
+                setUserData((prevData) => ({ ...prevData, problema: value }));
+                return true;
+            },
             trigger: 'situation-response',
         },
         {
@@ -174,7 +225,7 @@ const ChatbotComponent = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <ChatBot steps={steps} floating={true} width="400px"/>
+            <ChatBot steps={steps} floating={true} handleEnd={handleEnd} width="400px" />
         </ThemeProvider>
     );
 };

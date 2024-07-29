@@ -144,7 +144,7 @@ function Home() {
     };
 
     try {
-      const response = await fetch(host + '/evento', {
+      const response = await fetch(host + '/buzon/crear', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -155,7 +155,6 @@ function Home() {
       if (response.ok) {
         const result = await response.json();
         alert('Formulario enviado con éxito');
-        console.log(result);
         // Limpiar el formulario después del envío exitoso
         setNombre('');
         setTelefono('');
@@ -213,7 +212,7 @@ function Home() {
             <Row>
               <h1 className='title-section'>CONTACTOS</h1>
             </Row>
-            <Row className='content'>
+            <Row className='contactos-content-main'>
               {contactos.map(contacto => (
                 <div key={contacto.id_contacto} className='contacto-cuadro'>
                   <div className='contacto-imagen-container'>
@@ -299,7 +298,7 @@ function Home() {
             <Row>
               <h1 className='title-section'>EVENTOS</h1>
             </Row>
-            <Row className='content'>
+            <Row className='evento-home-content'>
               <div className='evento-cuadro1'>
                 <CalendarWithEvents events={eventos} onDateClick={setSelectedDate} />
               </div>

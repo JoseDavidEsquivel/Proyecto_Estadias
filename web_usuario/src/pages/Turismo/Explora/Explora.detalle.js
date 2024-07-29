@@ -57,7 +57,7 @@ const Explora_detalle = () => {
                     <div className='evento-detalle-main'>
                         <div className='evento-detalle-container-1'>
                             <div className='evento-detalle-imagen-container'>
-                                <img className='evento-detalle-imagen' src='#'></img>
+                                <img className='evento-detalle-imagen' src={explora.ruta}></img>
                             </div>
                             <div className='evento-detalle-info'>
                                 <div className='evento-detalle-titulo'>

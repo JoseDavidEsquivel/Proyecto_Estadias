@@ -19,9 +19,7 @@ function Principal_turismo() {
         .then(data => {
           if (data.length > 0) {
             const { archivo, ruta } = data[0];
-            setLogoUrl( host + `/${ruta}${archivo}`);
-            console.log(archivo, ruta)
-            console.log(host + `/${ruta}${archivo}`)
+            setLogoUrl(`${ruta}`);
           }
         })
         .catch(error => {
@@ -124,7 +122,7 @@ para ofrecerte</p>
                                     <a href={item.url} target="_blank" rel="noopener noreferrer">
                                         <img
                                         className="d-block w-100 carousel-image-2"
-                                        src={`${host}/${item.ruta}${item.imagen}`}
+                                        src={`${item.ruta}`}
                                         alt={`Slide ${index + 1}`}
                                         />
                                     </a>
@@ -156,7 +154,7 @@ para ofrecerte</p>
                             {eventos.map(evento => (
                                 <div key={evento.id_evento} className='turismo-eventos-cuadro'>
                                     <div className='turismo-eventos-imagen'>
-                                        <img src={`${host}/${evento.ruta}${evento.imagen}`} alt={evento.titulo} />
+                                        <img src={`${evento.ruta}`} alt={evento.titulo} />
                                     </div>
                                     <div className='turismo-eventos-titulo'>
                                         <p>{evento.titulo}</p>
@@ -165,7 +163,9 @@ para ofrecerte</p>
                                         <p>{formatDate(evento.fecha)}</p>
                                     </div>
                                     <div className='turismo-button-container'>
-                                        <button className="btn custom-btn-6">Leer más</button>
+                                        <a href={`/turismo/eventos/${evento.id_evento}`}>
+                                            <button className="btn custom-btn-6">Leer más</button>
+                                        </a>
                                     </div>
                                 </div>
                             ))}
@@ -186,7 +186,7 @@ para ofrecerte</p>
 algunos datos de utilidad que te pueden ayudar a planear mejor tu estadía.</p>
                             </div>
                         <div className='turismo-button-container variant-4'>
-                            <button className="btn custom-btn-8 variant-3">Conocelos</button>
+                            <a href='/turismo/tips' style={{width:'100%', display:'flex', textDecoration:'None'}}><button className="btn custom-btn-8 variant-3">Conocelos</button></a>
                         </div>
                     </div>
                 <div>
@@ -209,7 +209,9 @@ Prepárate para disfrutar de todo lo que Santiago Tulantepec tiene para ofrecert
 Tienes todo un municipio por descubrir solo o en compañia.</p>
                             </div>
                         <div className='turismo-button-container variant-4'>
-                            <button className="btn custom-btn-8 variant-3">Conocer mas</button>
+                        <a href='/turismo/explora' style={{width:'100%', display:'flex', textDecoration:'None'}}>
+                         <button className="btn custom-btn-8 variant-3">Conocer mas</button>
+                        </a>
                         </div>
                     </div>
                 <div>

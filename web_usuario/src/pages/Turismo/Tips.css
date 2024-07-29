@@ -63,3 +63,15 @@
     padding-top: 60px;
     padding-bottom: 60px;
 }
+
+@media (max-width:768px){
+.container-tips-4{
+    height: auto;
+}
+.container-tips-3-content{
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+}

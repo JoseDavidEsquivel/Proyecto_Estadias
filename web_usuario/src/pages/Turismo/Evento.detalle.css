@@ -46,8 +46,7 @@
 .evento-detalle-imagen{
     height: 400px;
     width: 400px;
-    aspect-ratio: 1;
-    background-color: lightgray;
+    object-fit: cover;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);

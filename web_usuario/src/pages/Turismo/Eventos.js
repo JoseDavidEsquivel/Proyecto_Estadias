@@ -101,7 +101,7 @@ function Eventos() {
                             {chunk.map(evento => (
                                 <div key={evento.id_evento} className='turismo-eventos-cuadro'>
                                     <div className='turismo-eventos-imagen'>
-                                        <img src={evento.imagen_url} alt={evento.titulo} />
+                                        <img src={evento.ruta} alt={evento.titulo} />
                                     </div>
                                     <div className='turismo-eventos-titulo'>
                                         <p>{evento.titulo}</p>
